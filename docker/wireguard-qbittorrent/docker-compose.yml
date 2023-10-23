@@ -1,0 +1,50 @@
+# defines external data volume
+volumes:
+  data:
+    external: true
+
+# defines traefik network for use
+networks:
+  traefik:
+    external: true
+
+services:
+  wireguard:
+    networks: [traefik]
+    image: lscr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=${WG_TZ}
+    volumes:
+      - ${WG_CLIENT_DIR}:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - ${WEB_UI_PORT}:${WEB_UI_PORT}
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wireguard-qbittorrent.rule=Host(`${HOST_NAME}`)"
+      - "com.centurylinklabs.watchtower.enable=false"
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    network_mode: service:wireguard
+    volumes:
+      - data:/data:rw
+    environment:
+      - PUID=${UID}
+      - PGID=${GID}
+      - TZ=${QT_TZ}
+      - WEBUI_PORT=${WEB_UI_PORT}
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "com.centurylinklabs.watchtower.enable=false"
