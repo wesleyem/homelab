@@ -6,3 +6,4 @@ services:
     container_name: "simple-service-1"
     ports:
       - "90:80"
+    restart: always
