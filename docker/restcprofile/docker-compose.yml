@@ -1,0 +1,20 @@
+# resticprofile
+version: "2"
+
+services:
+  scheduled-backup:
+    image: creativeprojects/resticprofile:latest
+    container_name: resticprofile
+    entrypoint: "/bin/sh"
+    command:
+      - "-c"
+      - "resticprofile schedule --all && crond -f"
+    volumes:
+      - ~/.ssh:/root/.ssh
+      # backup directory is mounted on the host machine. see ${PROFILEYAML}
+      - "${PROFILEYAML}:/etc/resticprofile/profiles.yaml:ro"
+      - "${KEY}:/etc/resticprofile/key:ro"
+      - "${RCLONE_DIR}:/root/.config/rclone"
+    environment:
+      - TZ=${TZ}
+    restart: always
