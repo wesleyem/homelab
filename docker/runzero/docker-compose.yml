@@ -1,0 +1,8 @@
+# runzero
+version: "3.3"
+services:
+  runzero:
+    network_mode: "host"
+    image: runzeroexplorer:latest
+    container_name: runZero
+    restart: unless-stopped
