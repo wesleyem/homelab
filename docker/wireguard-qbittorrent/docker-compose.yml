@@ -32,13 +32,13 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.wireguard-qbittorrent.rule=Host(`${HOST_NAME}`)"
       - "com.centurylinklabs.watchtower.enable=false"
-
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent
     container_name: qbittorrent
     network_mode: service:wireguard
     volumes:
       - data:/data:rw
+      - ${CONFIG_DIR}:/config
     environment:
       - PUID=${UID}
       - PGID=${GID}
