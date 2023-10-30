@@ -1,0 +1,37 @@
+# defines a custom network
+version: "3"
+
+networks:
+  sprinkles:
+    external: true
+
+services:
+  traefik:
+    command:
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--providers.docker.exposedByDefault=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.network=sprinkles"
+    deploy:
+      replicas: 1
+      placement:
+        # restrict traefik to only deploy on the swarm manager node
+        constraints:
+          - node.role == manager
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.traefik.rule=Host(`traefik.home`)"
+        - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    image: traefik
+    ports:
+      - 80:80
+      - 443:443
+      # -- (Optional) Enable Dashboard, don't do in production
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - sprinkles
