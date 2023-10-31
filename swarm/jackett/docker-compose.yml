@@ -1,0 +1,38 @@
+version: "3"
+
+networks:
+  sprinkles:
+    external: true
+
+volumes:
+  rclone_data:
+    driver: rclone
+    driver_opts:
+      remote: "rclone-remote"
+      path: "docker/jackett"
+      allow_other: "true"
+      vfs_cache_mode: full
+      poll_interval: 0
+
+services:
+  jackett:
+    networks:
+      - sprinkles
+    image: lscr.io/linuxserver/jackett:latest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - AUTO_UPDATE=true
+    volumes:
+      - rclone_data:/config
+      - rclone_data:/downloads
+    ports:
+      - 9117:9117
+    deploy:
+      restart_policy:
+        condition: on-failure
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jackett.rule=Host(`jackett.home`)"
