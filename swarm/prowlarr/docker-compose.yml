@@ -4,8 +4,8 @@ volumes:
   rclone_data:
     driver: rclone
     driver_opts:
-      remote: "rclone-remote"
-      path: "docker/prowlarr"
+      remote: rclone-remote
+      path: docker/prowlarr
       allow_other: "true"
       vfs_cache_mode: full
       poll_interval: 0
