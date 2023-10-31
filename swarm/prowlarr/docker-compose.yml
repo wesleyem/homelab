@@ -36,3 +36,4 @@ services:
       labels:
         - "traefik.enable=true"
         - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.home`)"
+        - "providers.docker.network=sprinkles"
