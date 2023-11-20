@@ -1,0 +1,21 @@
+version: "3.3"
+
+networks:
+  basket:
+    external: true
+
+services:
+  homepage:
+    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - /etc/docker/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - basket
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homepage.rule=Host(`homepage.lan`)"
+      - "traefik.http.services.homepage.loadbalancer.server.port=3000"
