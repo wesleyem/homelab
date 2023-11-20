@@ -1,15 +1,12 @@
 version: "3.3"
 
-volumes:
-  portainer_data:
-    external: true
 networks:
-  traefik:
+  basket:
     external: true
 services:
   portainer-ce:
     networks:
-      - traefik
+      - basket
     ports:
       - "8000:8000"
       - "9000:9000"
@@ -18,9 +15,9 @@ services:
     restart: always
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "portainer_data:/data"
+      - "/etc/docker/portainer/data:/data"
     image: "portainer/portainer-ce:latest"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`${HOST_NAME}`)"
+      - "traefik.http.routers.portainer.rule=Host(`${HOST_HOSTNAME}.portainer.lan`)"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
