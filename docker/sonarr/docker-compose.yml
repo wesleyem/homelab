@@ -1,0 +1,35 @@
+version: "3.2"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
+      device: ":/volume1/data/"
+
+networks:
+  default:
+    name: basket
+    external: true
+
+services:
+  sonarr:
+    container_name: sonarr
+    image: cr.hotio.dev/hotio/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 8989:8989
+    environment:
+      - PUID=997
+      - GUID=997
+      - TZ=America/Los_Angeles
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/docker/sonarr:/config
+      - data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.lan`)"

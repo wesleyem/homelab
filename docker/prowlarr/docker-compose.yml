@@ -1,0 +1,23 @@
+version: "3.7"
+
+networks:
+  default:
+    name: basket
+    external: true
+
+services:
+  prowlarr:
+    container_name: prowlarr
+    image: ghcr.io/hotio/prowlarr
+    ports:
+      - "9696:9696"
+    environment:
+      - PUID=995
+      - PGID=997
+      - UMASK=002
+      - TZ=America/Los_Angeles
+    volumes:
+      - /etc/docker/prowlarr:/config
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.lan`)"

@@ -1,0 +1,35 @@
+version: "3.2"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
+      device: ":/volume1/data/"
+
+networks:
+  default:
+    name: basket
+    external: true
+
+services:
+  radarr:
+    container_name: radarr
+    image: cr.hotio.dev/hotio/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 7878:7878
+    environment:
+      - PUID=1000
+      - GUID=997
+      - TZ=America/Los_Angeles
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/docker/radarr:/config
+      - data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.lan`)"
