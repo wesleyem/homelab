@@ -1,8 +1,7 @@
-# adguard
 version: "3.3"
-# define custom network
+
 networks:
-  traefik:
+  basket:
     external: true
 
 services:
@@ -10,14 +9,15 @@ services:
     image: adguard/adguardhome
     container_name: adguard
     restart: unless-stopped
-    networks: [traefik]
+    networks:
+      - basket
     volumes:
-      - ${ADGUARD_WORK}:/opt/adguardhome/work
-      - ${ADGUARD_CONF}:/opt/adguardhome/conf
+      - /etc/docker/adguard/work:/opt/adguardhome/work
+      - /etc/docker/adguard/conf:/opt/adguardhome/conf
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - 81:80/tcp
+      - 80:80/tcp
       - 444:443/tcp
       - 444:443/udp
       - 3000:3000/tcp
@@ -29,5 +29,5 @@ services:
       - 5443:5443/udp
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.adguard.rule=Host(`${HOST_NAME}`)"
+      - "traefik.http.routers.adguard.rule=Host(`${SUBDOMAIN}.adguard.lan`)"
       - "traefik.http.services.adguard.loadbalancer.server.port=80"
