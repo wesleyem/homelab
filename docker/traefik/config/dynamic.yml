@@ -1,0 +1,15 @@
+http:
+  routers:
+    syno:
+      entryPoints:
+        - web
+        - websecure
+      service: syno
+      rule: Host(`syno.lan`, `syno.wesleyem.com`)
+
+  services:
+    syno:
+      loadBalancer:
+        servers:
+          - url: http://syno:5000/
+        passHostHeader: true

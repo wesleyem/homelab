@@ -1,25 +1,25 @@
-# traefik
----
 # defines a custom network
+version: "3"
+
 networks:
-  traefik:
+  basket:
     external: true
 
 services:
   traefik:
-    image: traefik
     container_name: traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=Host(`${HOST_HOSTNAME}.traefik.lan`, `${HOST_HOSTNAME_ALT}.traefik.lan`)"
+      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+    image: traefik:v2.10.5
     ports:
       - 80:80
       - 443:443
       # -- (Optional) Enable Dashboard, don't do in production
       - 8080:8080
     volumes:
-      - ${WORKING_DIR}:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks: [traefik]
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`${HOST_NAME}`)"
-      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - /etc/docker/traefik:/etc/traefik
+    networks:
+      - basket
