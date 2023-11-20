@@ -1,0 +1,35 @@
+version: "2"
+
+networks:
+  basket:
+    external: true
+
+services:
+  plex:
+    networks:
+      - basket
+    container_name: plex
+    image: plexinc/pms-docker
+    restart: unless-stopped
+    ports:
+      - 32400:32400/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
+    environment:
+      - TZ=America/Los_Angeles
+      - PLEX_CLAIM=${PLEX_CLAIM}
+      - ADVERTISE_IP=${ADVERTISEIP}
+    hostname: ${HOST_HOSTNAME}
+    volumes:
+      - /etc/docker/pms/database:/config
+      - /etc/docker/pms/transcode:/transcode
+      - /mnt/pve/syno-data/media:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.plex.rule=Host(`plex.lan`, `plex.wesleyem.com`)"
+      - "traefik.http.services.plex.loadbalancer.server.port=32400"

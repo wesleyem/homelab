@@ -1,0 +1,25 @@
+version: "3"
+
+networks:
+  basket:
+    external: true
+
+services:
+  tautulli:
+    container_name: tautulli
+    image: ghcr.io/tautulli/tautulli
+    volumes:
+      - /etc/docker/tautulli:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    ports:
+      - 8181:8181
+    networks:
+      - basket
+    restart: on-failure
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tautulli.rule=Host(`tautulli.lan`)"
+      - "traefik.http.services.tautulli.loadbalancer.server.port=8181"
