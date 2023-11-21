@@ -1,7 +1,3 @@
 *.env
 
-/docker/adguard/env
-
-/docker/qbittorrent/env
-
-/docker/traefik/env
+env*
