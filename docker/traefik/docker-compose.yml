@@ -2,7 +2,8 @@
 version: "3"
 
 networks:
-  basket:
+  default:
+    name: basket
     external: true
 
 services:
@@ -10,7 +11,7 @@ services:
     container_name: traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`${HOST_HOSTNAME}.traefik.lan`, `${HOST_HOSTNAME_ALT}.traefik.lan`)"
+      - "traefik.http.routers.traefik.rule=Host(`${HOST_HOSTNAME}.traefik.lan`)"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
     image: traefik:v2.10.5
     ports:
@@ -21,5 +22,3 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/docker/traefik:/etc/traefik
-    networks:
-      - basket
