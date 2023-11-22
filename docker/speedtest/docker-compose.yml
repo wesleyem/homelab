@@ -42,6 +42,7 @@ services:
       - MARIADB_USER=${DB_USERNAME}
       - MARIADB_PASSWORD=${DB_PASSWORD}
       - MARIADB_RANDOM_ROOT_PASSWORD=true
+      - TZ=America/Los_Angeles
     volumes:
       - speedtest-db:/var/lib/mysql
     labels:
