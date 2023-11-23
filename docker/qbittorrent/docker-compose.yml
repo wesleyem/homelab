@@ -16,7 +16,7 @@ networks:
 services:
   qbittorrent:
     container_name: qbittorrent
-    image: ghcr.io/hotio/qbittorrent
+    image: ghcr.io/hotio/qbittorrent:release-9918ce7
     ports:
       - "8881:8080"
       - "8118:8118"
