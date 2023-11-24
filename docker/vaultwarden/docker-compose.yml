@@ -8,6 +8,7 @@ networks:
 services:
   vaultwarden:
     container_name: vaultwarden
+    user: 995:997
     image: vaultwarden/server:latest
     restart: unless-stopped
     volumes:
