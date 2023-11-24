@@ -1,13 +1,15 @@
 version: "3"
 
 networks:
-  basket:
+  default:
+    name: basket
     external: true
 
 services:
   overseerr:
     container_name: overseerr
     image: sctx/overseerr:latest
+    restart: unless-stopped
     environment:
       - LOG_LEVEL=info
       - TZ=America/Los_Angeles
@@ -15,8 +17,6 @@ services:
       - 5055:5055
     volumes:
       - /etc/docker/overseerr:/app/config
-    networks:
-      - basket
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.overseerr.rule=Host(`overseerr.lan`, `os.wesleyem.com`)"

@@ -1,7 +1,8 @@
 version: "3.3"
 
 networks:
-  basket:
+  default:
+    name: basket
     external: true
 
 services:
@@ -13,8 +14,7 @@ services:
     volumes:
       - /etc/docker/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
-    networks:
-      - basket
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.homepage.rule=Host(`homepage.lan`)"

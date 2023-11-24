@@ -1,7 +1,8 @@
 version: "3"
 
 networks:
-  basket:
+  default:
+    name: basket
     external: true
 
 services:
@@ -16,9 +17,7 @@ services:
       - TZ=America/Los_Angeles
     ports:
       - 8181:8181
-    networks:
-      - basket
-    restart: on-failure
+    restart: unless-stopped
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.tautulli.rule=Host(`tautulli.lan`)"
