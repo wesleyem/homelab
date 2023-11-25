@@ -45,3 +45,4 @@ services:
       - traefik.http.routers.vaultwarden-https.rule=Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
       - traefik.http.routers.vaultwarden-https.tls=true
       - traefik.http.routers.vaultwarden-https.tls.certresolver=production
+      - traefik.http.routers.vaultwarden-https.tls.domains[0].main=vaultwarden.home.wesleyem.com
