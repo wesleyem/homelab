@@ -39,4 +39,9 @@ services:
       - SMTP_PASSWORD=${SMTP_SUPER_SECRET_PASSWORD}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.vaultwarden.rule=Host(`vaultwarden.lan`, `vaultwarden.wesleyem.com`)"
+      - traefik.http.routers.vaultwarden-http.entrypoints=web
+      - traefik.http.routers.vaultwarden-http.rule=Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
+      - traefik.http.routers.vaultwarden-https.entrypoints=websecure
+      - traefik.http.routers.vaultwarden-https.rule=Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
+      - traefik.http.routers.vaultwarden-https.tls=true
+      - traefik.http.routers.vaultwarden-https.tls.certresolver=production
