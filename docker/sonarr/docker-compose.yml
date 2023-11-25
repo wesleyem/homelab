@@ -32,4 +32,9 @@ services:
       - data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.lan`)"
+      - traefik.http.routers.sonarr-http.entrypoints=web
+      - traefik.http.routers.sonarr-http.rule=Host(`sonarr.home.wesleyem.com`)
+      - traefik.http.routers.sonarr-https.entrypoints=websecure
+      - traefik.http.routers.sonarr-https.rule=Host(`sonarr.home.wesleyem.com`)
+      - traefik.http.routers.sonarr-https.tls=true
+      - traefik.http.routers.sonarr-https.tls.certresolver=staging
