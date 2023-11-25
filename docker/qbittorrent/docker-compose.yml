@@ -43,5 +43,10 @@ services:
       - net.ipv6.conf.all.disable_ipv6=1
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.qbittorrent.rule=Host(`${HOST_HOSTNAME}.qbittorrent.lan`)"
       - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
+      - traefik.http.routers.qbittorrent-http.entrypoints=web
+      - traefik.http.routers.qbittorrent-http.rule=Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
+      - traefik.http.routers.qbittorrent-https.entrypoints=websecure
+      - traefik.http.routers.qbittorrent-https.rule=Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
+      - traefik.http.routers.qbittorrent-https.tls=true
+      - traefik.http.routers.qbittorrent-https.tls.certresolver=staging
