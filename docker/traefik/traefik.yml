@@ -13,6 +13,12 @@ api:
 entryPoints:
   web:
     address: :80
+    # -- (Optional) Redirect all HTTP to HTTPS
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
   websecure:
     address: :443
   dns:
@@ -23,7 +29,7 @@ certificatesResolvers:
   staging:
     acme:
       email: wesleyem@pm.me
-      storage: /etc/traefik/certs/acme.json
+      storage: /etc/traefik/certs/acme-staging.json
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       # -- (Optional) Configure DNS Challenge
       dnsChallenge:
@@ -34,7 +40,7 @@ certificatesResolvers:
   production:
     acme:
       email: wesleyem@pm.me
-      storage: /etc/traefik/certs/acme.json
+      storage: /etc/traefik/certs/acme-prod.json
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
       # -- (Optional) Configure DNS Challenge
       dnsChallenge:
