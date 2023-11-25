@@ -32,4 +32,9 @@ services:
       - data:/data
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.radarr.rule=Host(`radarr.lan`)"
+      - traefik.http.routers.radarr-http.entrypoints=web
+      - traefik.http.routers.radarr-http.rule=Host(`radarr.home.wesleyem.com`)
+      - traefik.http.routers.radarr-https.entrypoints=websecure
+      - traefik.http.routers.radarr-https.rule=Host(`radarr.home.wesleyem.com`)
+      - traefik.http.routers.radarr-https.tls=true
+      - traefik.http.routers.radarr-https.tls.certresolver=staging
