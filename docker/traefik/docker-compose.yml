@@ -23,5 +23,10 @@ services:
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`${HOST_HOSTNAME}.traefik.lan`)"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+      - traefik.http.routers.traefik-http.entrypoints=web
+      - traefik.http.routers.traefik-http.rule=Host(`${HOST_HOSTNAME}.traefik.home.wesleyem.com`)
+      - traefik.http.routers.traefik-https.entrypoints=websecure
+      - traefik.http.routers.traefik-https.rule=Host(`${HOST_HOSTNAME}.traefik.home.wesleyem.com`)
+      - traefik.http.routers.traefik-https.tls=true
+      - traefik.http.routers.traefik-https.tls.certresolver=staging
