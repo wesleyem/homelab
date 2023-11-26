@@ -21,4 +21,10 @@ services:
       - /etc/docker/prowlarr:/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.lan`)"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=8080"
+      - traefik.http.routers.prowlarr-http.entrypoints=web
+      - traefik.http.routers.prowlarr-http.rule=Host(`prowlarr.home.wesleyem.com`)
+      - traefik.http.routers.prowlarr-https.entrypoints=websecure
+      - traefik.http.routers.prowlarr-https.rule=Host(`prowlarr.home.wesleyem.com`)
+      - traefik.http.routers.prowlarr-https.tls=true
+      - traefik.http.routers.prowlarr-https.tls.certresolver=staging
