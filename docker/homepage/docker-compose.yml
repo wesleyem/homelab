@@ -17,5 +17,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homepage.rule=Host(`homepage.lan`)"
       - "traefik.http.services.homepage.loadbalancer.server.port=3000"
+      - traefik.http.routers.homepage-http.entrypoints=web
+      - traefik.http.routers.homepage-http.rule=Host(`homepage.home.wesleyem.com`)
+      - traefik.http.routers.homepage-https.entrypoints=websecure
+      - traefik.http.routers.homepage-https.rule=Host(`homepage.home.wesleyem.com`)
+      - traefik.http.routers.homepage-https.tls=true
+      - traefik.http.routers.homepage-https.tls.certresolver=staging
