@@ -20,5 +20,10 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.tautulli.rule=Host(`tautulli.lan`)"
       - "traefik.http.services.tautulli.loadbalancer.server.port=8181"
+      - traefik.http.routers.tautulli-http.entrypoints=web
+      - traefik.http.routers.tautulli-http.rule=Host(`tautulli.home.wesleyem.com`)
+      - traefik.http.routers.tautulli-https.entrypoints=websecure
+      - traefik.http.routers.tautulli-https.rule=Host(`tautulli.home.wesleyem.com`)
+      - traefik.http.routers.tautulli-https.tls=true
+      - traefik.http.routers.tautulli-https.tls.certresolver=staging
