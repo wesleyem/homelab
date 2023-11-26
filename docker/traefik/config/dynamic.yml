@@ -5,11 +5,10 @@ http:
         - web
         - websecure
       service: syno
-      rule: Host(`syno.lan`, `syno.wesleyem.com`)
-
+      rule: Host(`syno.home.wesleyem.com`)
   services:
     syno:
       loadBalancer:
         servers:
-          - url: http://syno:5000/
+          - url: http://syno/
         passHostHeader: true
