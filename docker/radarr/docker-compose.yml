@@ -23,18 +23,18 @@ services:
     ports:
       - 7878:7878
     environment:
-      - PUID=1000
-      - GUID=997
-      - TZ=America/Los_Angeles
+      PUID: 1000
+      GUID: 997
+      TZ: America/Los_Angeles
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/docker/radarr:/config
       - data:/data
     labels:
-      - "traefik.enable=true"
-      - traefik.http.routers.radarr-http.entrypoints=web
-      - traefik.http.routers.radarr-http.rule=Host(`radarr.home.wesleyem.com`)
-      - traefik.http.routers.radarr-https.entrypoints=websecure
-      - traefik.http.routers.radarr-https.rule=Host(`radarr.home.wesleyem.com`)
-      - traefik.http.routers.radarr-https.tls=true
-      - traefik.http.routers.radarr-https.tls.certresolver=staging
+      traefik.enable: true
+      traefik.http.routers.radarr-http.entrypoints: web
+      traefik.http.routers.radarr-http.rule: Host(`radarr.home.wesleyem.com`)
+      traefik.http.routers.radarr-https.entrypoints: websecure
+      traefik.http.routers.radarr-https.rule: Host(`radarr.home.wesleyem.com`)
+      traefik.http.routers.radarr-https.tls: true
+      traefik.http.routers.radarr-https.tls.certresolver: production

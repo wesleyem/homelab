@@ -16,33 +16,33 @@ services:
     ports:
       - 8988:80
     environment:
-      - DOMAIN=https://vaultwarden.wesleyem.com
-      - LOGIN_RATELIMIT_MAX_BURST=10
-      - LOGIN_RATELIMIT_SECONDS=60
-      - ADMIN_RATELIMIT_MAX_BURST=10
-      - ADMIN_RATELIMIT_SECONDS=60
-      - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}
-      - SENDS_ALLOWED=true
-      - EMERGENCY_ACCESS_ALLOWED=true
-      - SHOW_PASSWORD_HINT=false
-      - WEB_VAULT_ENABLED=true
-      - SIGNUPS_ALLOWED=false
-      - SIGNUPS_VERIFY=true
-      - SIGNUPS_VERIFY_RESEND_TIME=3600
-      - SIGNUPS_VERIFY_RESEND_LIMIT=5
-      - SMTP_HOST=${SMTP_RELAY}
-      - SMTP_FROM=${VAULTWARDEN_EMAIL}
-      - SMTP_FROM_NAME=Vaultwarden
-      - SMTP_SECURITY=starttls
-      - SMTP_PORT=587
-      - SMTP_USERNAME=${SMTP_USERNAME}
-      - SMTP_PASSWORD=${SMTP_SUPER_SECRET_PASSWORD}
+      DOMAIN: https://vaultwarden.wesleyem.com
+      LOGIN_RATELIMIT_MAX_BURST: 10
+      LOGIN_RATELIMIT_SECONDS: 60
+      ADMIN_RATELIMIT_MAX_BURST: 10
+      ADMIN_RATELIMIT_SECONDS: 60
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+      SENDS_ALLOWED: true
+      EMERGENCY_ACCESS_ALLOWED: true
+      SHOW_PASSWORD_HINT: false
+      WEB_VAULT_ENABLED: true
+      SIGNUPS_ALLOWED: false
+      SIGNUPS_VERIFY: true
+      SIGNUPS_VERIFY_RESEND_TIME: 3600
+      SIGNUPS_VERIFY_RESEND_LIMIT: 5
+      SMTP_HOST: ${SMTP_RELAY}
+      SMTP_FROM: ${VAULTWARDEN_EMAIL}
+      SMTP_FROM_NAME: Vaultwarden
+      SMTP_SECURITY: starttls
+      SMTP_PORT: 587
+      SMTP_USERNAME: ${SMTP_USERNAME}
+      SMTP_PASSWORD: ${SMTP_SUPER_SECRET_PASSWORD}
     labels:
-      - "traefik.enable=true"
-      - traefik.http.routers.vaultwarden-http.entrypoints=web
-      - traefik.http.routers.vaultwarden-http.rule=Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
-      - traefik.http.routers.vaultwarden-https.entrypoints=websecure
-      - traefik.http.routers.vaultwarden-https.rule=Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
-      - traefik.http.routers.vaultwarden-https.tls=true
-      - traefik.http.routers.vaultwarden-https.tls.certresolver=production
-      - traefik.http.routers.vaultwarden-https.tls.domains[0].main=vaultwarden.home.wesleyem.com
+      traefik.enable: true
+      traefik.http.routers.vaultwarden-http.entrypoints: web
+      traefik.http.routers.vaultwarden-http.rule: Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
+      traefik.http.routers.vaultwarden-https.entrypoints: websecure
+      traefik.http.routers.vaultwarden-https.rule: Host(`vaultwarden.home.wesleyem.com`, `vaultwarden.wesleyem.com`)
+      traefik.http.routers.vaultwarden-https.tls: true
+      traefik.http.routers.vaultwarden-https.tls.certresolver: production
+      traefik.http.routers.vaultwarden-https.tls.domains[0].main: vaultwarden.home.wesleyem.com

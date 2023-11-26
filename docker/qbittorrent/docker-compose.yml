@@ -19,18 +19,17 @@ services:
     restart: unless-stopped
     image: ghcr.io/hotio/qbittorrent:release-9918ce7
     ports:
-      - "8881:8080"
-      - "8118:8118"
+      - 8881:8080
+      - 8118:8118
     environment:
-      - PUID=999
-      - PGID=997
-      - UMASK=002
-      - TZ=Etc/UTC
-      - VPN_ENABLED=true
-      - VPN_LAN_NETWORK=10.100.0.0/24
-      - VPN_CONF=wg0
-      - VPN_ADDITIONAL_PORTS
-      - PRIVOXY_ENABLED=false
+      PUID: 999
+      PGID: 997
+      UMASK: 002
+      TZ: Etc/UTC
+      VPN_ENABLED: true
+      VPN_LAN_NETWORK: 10.100.0.0/24
+      VPN_CONF: wg0
+      PRIVOXY_ENABLED: false
     volumes:
       - /etc/docker/qbittorrent:/config
       - data:/data
@@ -39,14 +38,14 @@ services:
     dns:
       - 1.1.1.1
     sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-      - net.ipv6.conf.all.disable_ipv6=1
+      net.ipv4.conf.all.src_valid_mark: 1
+      net.ipv6.conf.all.disable_ipv6: 1
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.qbittorrent.loadbalancer.server.port=8080"
-      - traefik.http.routers.qbittorrent-http.entrypoints=web
-      - traefik.http.routers.qbittorrent-http.rule=Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
-      - traefik.http.routers.qbittorrent-https.entrypoints=websecure
-      - traefik.http.routers.qbittorrent-https.rule=Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
-      - traefik.http.routers.qbittorrent-https.tls=true
-      - traefik.http.routers.qbittorrent-https.tls.certresolver=staging
+      traefik.enable: true
+      traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
+      traefik.http.routers.qbittorrent-http.entrypoints: web
+      traefik.http.routers.qbittorrent-http.rule: Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
+      traefik.http.routers.qbittorrent-https.entrypoints: websecure
+      traefik.http.routers.qbittorrent-https.rule: Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
+      traefik.http.routers.qbittorrent-https.tls: true
+      traefik.http.routers.qbittorrent-https.tls.certresolver: production

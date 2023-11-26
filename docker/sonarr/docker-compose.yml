@@ -23,18 +23,18 @@ services:
     ports:
       - 8989:8989
     environment:
-      - PUID=997
-      - GUID=997
-      - TZ=America/Los_Angeles
+      PUID: 997
+      GUID: 997
+      TZ: America/Los_Angeles
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/docker/sonarr:/config
       - data:/data
     labels:
-      - "traefik.enable=true"
-      - traefik.http.routers.sonarr-http.entrypoints=web
-      - traefik.http.routers.sonarr-http.rule=Host(`sonarr.home.wesleyem.com`)
-      - traefik.http.routers.sonarr-https.entrypoints=websecure
-      - traefik.http.routers.sonarr-https.rule=Host(`sonarr.home.wesleyem.com`)
-      - traefik.http.routers.sonarr-https.tls=true
-      - traefik.http.routers.sonarr-https.tls.certresolver=staging
+      traefik.enable: true
+      traefik.http.routers.sonarr-http.entrypoints: web
+      traefik.http.routers.sonarr-http.rule: Host(`sonarr.home.wesleyem.com`)
+      traefik.http.routers.sonarr-https.entrypoints: websecure
+      traefik.http.routers.sonarr-https.rule: Host(`sonarr.home.wesleyem.com`)
+      traefik.http.routers.sonarr-https.tls: true
+      traefik.http.routers.sonarr-https.tls.certresolver: production

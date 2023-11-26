@@ -30,12 +30,12 @@ services:
       - /etc/docker/pms/transcode:/transcode
       - /mnt/pve/syno-data/media:/data
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.plex.loadbalancer.server.port=32400"
-      - traefik.http.routers.plex-http.entrypoints=web
-      - traefik.http.routers.plex-http.rule=Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
-      - traefik.http.routers.plex-https.entrypoints=websecure
-      - traefik.http.routers.plex-https.rule=Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
-      - traefik.http.routers.plex-https.tls=true
-      - traefik.http.routers.plex-https.tls.certresolver=production
-      - traefik.http.routers.plex-https.tls.domains[0].main=plex.home.wesleyem.com
+      traefik.enable: true
+      traefik.http.services.plex.loadbalancer.server.port: 32400
+      traefik.http.routers.plex-http.entrypoints: web
+      traefik.http.routers.plex-http.rule: Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
+      traefik.http.routers.plex-https.entrypoints: websecure
+      traefik.http.routers.plex-https.rule: Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
+      traefik.http.routers.plex-https.tls: true
+      traefik.http.routers.plex-https.tls.certresolver: production
+      traefik.http.routers.plex-https.tls.domains[0].main: plex.home.wesleyem.com
