@@ -19,5 +19,11 @@ services:
       - /etc/docker/overseerr:/app/config
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.overseerr.rule=Host(`overseerr.lan`, `os.wesleyem.com`)"
       - "traefik.http.services.overseerr.loadbalancer.server.port=5055"
+      - traefik.http.routers.overseerr-http.entrypoints=web
+      - traefik.http.routers.overseerr-http.rule=Host(`overseerr.home.wesleyem.com`, `os.wesleyem.com`)
+      - traefik.http.routers.overseerr-https.entrypoints=websecure
+      - traefik.http.routers.overseerr-https.rule=Host(`overseerr.home.wesleyem.com`, `os.wesleyem.com`)
+      - traefik.http.routers.overseerr-https.tls=true
+      - traefik.http.routers.overseerr-https.tls.certresolver=staging
+      - traefik.http.routers.overseerr-https.tls.domains[0].main=overseerr.home.wesleyem.com
