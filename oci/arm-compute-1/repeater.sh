@@ -6,6 +6,7 @@ log_filename="repeaterlog"
 timestamp="Timestamp: $(date)"
 echo $timestamp >> $log_dir/$error_log_filename
 echo $timestamp >> $log_dir/$log_filename
+cd $log_dir/..
 terraform apply \
     -auto-approve \
     -no-color \
