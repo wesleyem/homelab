@@ -9,4 +9,4 @@ env*
 *.tfvars
 *.tfstate
 #repeater
-repeater*.log
+logs
