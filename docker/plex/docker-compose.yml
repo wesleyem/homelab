@@ -1,13 +1,10 @@
 version: "2"
 
-networks:
-  basket:
-    external: true
-
 services:
   plex:
-    networks:
-      - basket
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
     container_name: plex
     image: plexinc/pms-docker
     restart: unless-stopped
@@ -26,16 +23,6 @@ services:
       - ADVERTISE_IP=${ADVERTISEIP}
     hostname: ${HOST_HOSTNAME}
     volumes:
-      - /etc/docker/pms/database:/config
-      - /etc/docker/pms/transcode:/transcode
-      - /mnt/pve/syno-data/media:/data
-    labels:
-      traefik.enable: true
-      traefik.http.services.plex.loadbalancer.server.port: 32400
-      traefik.http.routers.plex-http.entrypoints: web
-      traefik.http.routers.plex-http.rule: Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
-      traefik.http.routers.plex-https.entrypoints: websecure
-      traefik.http.routers.plex-https.rule: Host(`plex.home.wesleyem.com`, `plex.wesleyem.com`)
-      traefik.http.routers.plex-https.tls: true
-      traefik.http.routers.plex-https.tls.certresolver: production
-      traefik.http.routers.plex-https.tls.domains[0].main: plex.home.wesleyem.com
+      - /volume1/docker/pms/database:/config
+      - /volume1/docker/pms/transcode:/transcode
+      - /volume1/data/media:/data
