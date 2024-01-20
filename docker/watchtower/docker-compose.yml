@@ -14,7 +14,8 @@ services:
     environment:
       TZ: ${TZ}
       WATCHTOWER_CLEANUP: "true"
-      WATCHTOWER_SCHEDULE: "30 * * * * *"
+      # WATCHTOWER_SCHEDULE: "30 * * * * *"
+      WATCHTOWER_POLL_INTERVAL: 30
       WATCHTOWER_ROLLING_RESTART: "true"
       WATCHTOWER_HTTP_API_TOKEN: ${WATCHTOWER_HTTP_API_TOKEN}
       WATCHTOWER_HTTP_API_METRICS: "true"
