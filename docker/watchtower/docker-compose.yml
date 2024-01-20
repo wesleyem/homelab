@@ -23,7 +23,7 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: true
-      traefik.http.services.watchtower.loadbalancer.server.port: 8082
+      traefik.http.services.watchtower.loadbalancer.server.port: 8080
       traefik.http.routers.watchtower-http.entrypoints: web
       traefik.http.routers.watchtower-http.rule: Host(`${HOST_HOSTNAME}.watchtower.home.wesleyem.com`)
       traefik.http.routers.watchtower-https.entrypoints: websecure
