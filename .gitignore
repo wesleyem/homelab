@@ -1,12 +1,20 @@
 # env files
 *.env
+
 # env dirs
 env*
+
 # terraform
 .terraform
 .terraform.lock.hcl
 .terraform.tfstate.lock.info
 *.tfvars
 *.tfstate
+
 #repeater
 logs
+
+# ansible
+ansible/inventories
+ansible/group_vars
+ansible/host_vars
