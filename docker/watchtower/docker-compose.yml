@@ -1,11 +1,12 @@
 version: "3"
 # define custom network
 networks:
-  traefik:
+  default:
+    name: basket
     external: true
+
 services:
   watchtower:
-    networks: [traefik]
     container_name: watchtower
     image: containrrr/watchtower
     volumes:
@@ -21,5 +22,11 @@ services:
       - 8082:8080
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.watchtower.rule=Host(`${HOST_NAME}`)"
+      traefik.enable: true
+      traefik.http.services.watchtower.loadbalancer.server.port: 8082
+      traefik.http.routers.watchtower-http.entrypoints: web
+      traefik.http.routers.watchtower-http.rule: Host(`${HOST_HOSTNAME}.watchtower.home.wesleyem.com`)
+      traefik.http.routers.watchtower-https.entrypoints: websecure
+      traefik.http.routers.watchtower-https.rule: Host(`${HOST_HOSTNAME}.watchtower.home.wesleyem.com`)
+      traefik.http.routers.watchtower-https.tls: true
+      traefik.http.routers.watchtower-https.tls.certresolver: production
