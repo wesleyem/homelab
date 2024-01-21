@@ -1,0 +1,12 @@
+---
+# 
+# Usage: ansible-playbook -l your_proxmox_node -e "target_vmid=your_vmid_here" your_playbook.yml
+# 
+
+- name: Configure serial and VGA for a VM
+  hosts: "{{ target_proxmox_node }}"
+  tasks:
+    - name: Set serial and VGA for VM
+      command: qm set {{ vmid }} --serial0 socket --vga serial0
+      vars:
+        vmid: "{{ target_vmid }}"

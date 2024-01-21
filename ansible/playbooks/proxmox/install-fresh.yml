@@ -1,0 +1,62 @@
+---
+
+# Configure no subscription repo information
+- name: Configure no subscription repo information
+  block:
+    - name: Update sources list
+      lineinfile:
+        path: /etc/apt/sources.list.d/pve-enterprise.list
+        regexp: '^deb https://enterprise.proxmox.com/debian/pve {{ ansible_distribution_release  }} enterprise'
+        line: 'deb http://download.proxmox.com/debian/pve {{ ansible_distribution_release  }} pve-no-subscription'
+    
+    # Update and Dist Upgrade
+    - name: Dist Upgrade
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+# Handle lid close event
+- name: Handle lid close event
+  block:
+    - name: Update logind.conf with HanldeLidSwitch* edits
+      lineinfile:
+        path: /etc/systemd/logind.conf  # Replace with the actual path to your configuration file
+        regexp: '^({{ item.regexp }})'
+        line: '{{ item.line }}'
+      loop:
+        - { regexp: 'HandleLidSwitch=', line: 'HandleLidSwitch=ignore' }
+        - { regexp: 'HandleLidSwitchExternalPower=', line: 'HandleLidSwitchExternalPower=ignore' }
+        - { regexp: 'HandleLidSwitchDocked=', line: 'HandleLidSwitchDocked=ignore' }
+    # Restart systemd-logind service 
+    - name: Restart systemd-logind.service
+      systemd:
+        name: systemd-logind
+        state: restarted
+
+# Handle screen timeout event
+- name: Handle screen timeout event
+  block:
+    - name: Add consoleblank=60 to GRUB_CMDLINE_LINUX
+      lineinfile:
+        path: /etc/default/grub
+        regexp: '^GRUB_CMDLINE_LINUX='
+        line: 'GRUB_CMDLINE_LINUX="consoleblank=60"'
+
+    - name: Run update-grub
+      command: update-grub
+
+# Resize to full storage space
+- name: Resize to full storage space
+  block:
+    - name: Remove local-lvm storage
+      command: pvesm remove local-lvm
+    
+    - name: Remove logical volume /dev/pve/data
+      command: lvremove --force /dev/pve/data
+
+    - name: Resize logical volume /dev/pve/root
+      command: lvresize -l +100%FREE /dev/pve/root
+
+    - name: Resize filesystem on /dev/mapper/pve-root
+      command: resize2fs /dev/mapper/pve-root
+
