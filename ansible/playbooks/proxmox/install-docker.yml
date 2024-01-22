@@ -1,63 +1,66 @@
 ---
-- name: Remove Docker-related packages
-  apt:
-    name: "{{ item }}"
-    state: absent
-  loop:
-    - docker.io
-    - docker-doc
-    - docker-compose
-    - docker-compose-v2
-    - podman-docker
-    - containerd
-    - runc
+- name: Install Docker
+  hosts: "proxmox"
+  tasks:
+    - name: Remove Docker-related packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - docker.io
+        - docker-doc
+        - docker-compose
+        - docker-compose-v2
+        - podman-docker
+        - containerd
+        - runc
 
-# set up Docker's APT repo
-- name: Set up Docker's APT repo
-  block:
-    - name: Install required packages
+    # set up Docker's APT repo
+    - name: Set up Docker's APT repo
+      block:
+        - name: Install required packages
+          apt:
+            update_cache: yes
+            name:
+              - ca-certificates
+              - curl
+              - gnupg
+              - fuse
+            state: present
+
+        - name: Create directory /etc/apt/keyrings
+          file:
+            path: /etc/apt/keyrings
+            state: directory
+            mode: '0755'
+
+        - name: Download Docker GPG key
+          get_url:
+            url: "https://download.docker.com/linux/debian/gpg"
+            dest: "/etc/apt/keyrings/docker.gpg"
+
+        - name: Import Docker GPG key
+          command: gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+        - name: Set permissions for Docker GPG key
+          file:
+            path: /etc/apt/keyrings/docker.gpg
+            mode: a+r
+
+        - name: Configure Docker repository
+          command: >
+            echo "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+            $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" |
+            tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    # install latest docker packages
+    - name: Install Docker-related packages
       apt:
         update_cache: yes
         name:
-          - ca-certificates
-          - curl
-          - gnupg
-          - fuse
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
         state: present
-
-    - name: Create directory /etc/apt/keyrings
-      file:
-        path: /etc/apt/keyrings
-        state: directory
-        mode: '0755'
-
-    - name: Download Docker GPG key
-      get_url:
-        url: "https://download.docker.com/linux/debian/gpg"
-        dest: "/etc/apt/keyrings/docker.gpg"
-
-    - name: Import Docker GPG key
-      command: gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-    - name: Set permissions for Docker GPG key
-      file:
-        path: /etc/apt/keyrings/docker.gpg
-        mode: a+r
-
-    - name: Configure Docker repository
-      command: >
-        echo "deb [arch=\"$(dpkg --print-architecture)\" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
-        $(. /etc/os-release && echo \"$VERSION_CODENAME\") stable" |
-        tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-# install latest docker packages
-- name: Install Docker-related packages
-  apt:
-    update_cache: yes
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
-    state: present

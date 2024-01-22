@@ -1,0 +1,28 @@
+---
+- name: Update Portainer Agents
+  hosts: "portainer_agents"
+  tasks:
+    - name: Pull the latest Portainer Agent image
+      community.docker.docker_image:
+        name: portainer/agent
+        source: pull
+        tag: latest
+        
+    - name: Stop a container
+      community.docker.docker_container:
+        container_default_behavior: compatibility
+        name: portainer_agent
+        state: stopped
+
+    - name: Run Portainer Agent container
+      community.docker.docker_container:
+        container_default_behavior: compatibility
+        name: portainer_agent
+        image: portainer/agent:latest
+        state: started
+        restart_policy: always
+        published_ports:
+          - "9001:9001"
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+          - /var/lib/docker/volumes:/var/lib/docker/volumes
