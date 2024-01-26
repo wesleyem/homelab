@@ -27,6 +27,7 @@ services:
       UMASK: 002
       TZ: Etc/UTC
       VPN_ENABLED: true
+      VPN_PROVIDER: proton
       VPN_LAN_NETWORK: 10.100.0.0/24
       VPN_CONF: wg0
       PRIVOXY_ENABLED: false
