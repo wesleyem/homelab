@@ -21,7 +21,11 @@ services:
       DB_USERNAME: ${DB_USERNAME}
       DB_PASSWORD: ${DB_PASSWORD}
       APP_KEY: ${APP_KEY}
-      TZ: America/Los_Angeles
+      APP_TIMEZONE: America/Los_Angeles
+      DISPLAY_TIMEZONE: America/Los_Angeles
+      SPEEDTEST_SCHEDULE: 0 0/4 * * *
+      SPEEDTEST_SERVERS: 14236,16620
+      PRUNE_RESULTS_OLDER_THAN: 90
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/docker/speedtest/config:/config
