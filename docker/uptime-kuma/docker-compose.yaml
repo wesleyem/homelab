@@ -16,6 +16,7 @@ services:
       - uptime-kuma-data:/app/data
     labels:
       traefik.enable: true
+      traefik.http.services.uptimekuma.loadbalancer.server.port: 3001
       traefik.http.routers.uptimekuma-http.entrypoints: web
       traefik.http.routers.uptimekuma-http.rule: Host(`uptimekuma.home.wesleyem.com`)
       traefik.http.routers.uptimekuma-https.entrypoints: websecure
