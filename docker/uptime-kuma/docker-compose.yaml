@@ -10,13 +10,13 @@ services:
     volumes:
       - uptime-kuma-data:/app/data
     labels:
-      uptimekuma.enable: true
-      uptimekuma.http.routers.uptimekuma-http.entrypoints: web
-      uptimekuma.http.routers.uptimekuma-http.rule: Host(`uptimekuma.home.wesleyem.com`)
-      uptimekuma.http.routers.uptimekuma-https.entrypoints: websecure
-      uptimekuma.http.routers.uptimekuma-https.rule: Host(`uptimekuma.home.wesleyem.com`)
-      uptimekuma.http.routers.uptimekuma-https.tls: true
-      uptimekuma.http.routers.uptimekuma-https.tls.certresolver: production
+      traefik.enable: true
+      traefik.http.routers.uptimekuma-http.entrypoints: web
+      traefik.http.routers.uptimekuma-http.rule: Host(`uptimekuma.home.wesleyem.com`)
+      traefik.http.routers.uptimekuma-https.entrypoints: websecure
+      traefik.http.routers.uptimekuma-https.rule: Host(`uptimekuma.home.wesleyem.com`)
+      traefik.http.routers.uptimekuma-https.tls: true
+      traefik.http.routers.uptimekuma-https.tls.certresolver: production
 
 volumes:
   uptime-kuma-data:
