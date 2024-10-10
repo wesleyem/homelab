@@ -17,7 +17,7 @@ services:
   qbittorrent:
     container_name: qbittorrent
     restart: unless-stopped
-    image: ghcr.io/hotio/qbittorrent:latest
+    image: ghcr.io/hotio/qbittorrent:release-4.6.7
     ports:
       - 8881:8080
       - 8118:8118
