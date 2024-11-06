@@ -1,0 +1,9 @@
+- hosts: "proxmox"
+  remote_user: root
+  tasks:
+    # usermod
+    - name: append groups to user
+      user:
+        name: wes
+        append: true
+        groups: sudo, docker

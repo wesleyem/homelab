@@ -1,0 +1,8 @@
+- hosts: "proxmox"
+  remote_user: root
+  tasks:
+    # Install sudo
+    - name: install sudo
+      apt:
+        name: sudo
+        update_cache: yes
