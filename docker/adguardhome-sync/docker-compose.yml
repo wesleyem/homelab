@@ -1,0 +1,22 @@
+---
+services:
+  adguardhome-sync:
+    image: ghcr.io/bakito/adguardhome-sync
+    container_name: adguardhome-sync
+    command: run
+    environment:
+      LOG_LEVEL: "info"
+      ORIGIN_URL: "http://adguard.$PRI.home.wesleyem.com"
+
+      ORIGIN_USERNAME: $AGHUSERNAME
+      ORIGIN_PASSWORD: $AGHPASSWORD
+      REPLICA1_URL: "http://adguard.$ALT.home.wesleyem.com"
+      REPLICA1_USERNAME: $AGHUSERNAME
+      REPLICA1_PASSWORD: $AGHPASSWORD
+      CRON: "0 */2 * * *" # run every 2 hours
+      RUN_ON_START: "true"
+      API_PORT: 8989
+      API_DARK_MODE: "true"
+    ports:
+      - 8989:8989
+    restart: unless-stopped
