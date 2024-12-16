@@ -24,4 +24,4 @@ services:
       traefik.http.routers.uptimekuma-https.tls.certresolver: production
 
 volumes:
-  uptime-kuma-data:
+  uptime-kuma-data: {}
