@@ -7,6 +7,7 @@ volumes:
       type: nfs
       o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
       device: ":/volume1/data/"
+  radarr: {}
 
 networks:
   default:
@@ -28,7 +29,7 @@ services:
       TZ: America/Los_Angeles
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /etc/docker/radarr:/config
+      - radarr:/config
       - data:/data
     labels:
       traefik.enable: true
