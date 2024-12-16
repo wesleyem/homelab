@@ -16,7 +16,7 @@ networks:
 services:
   sonarr:
     container_name: sonarr
-    image: cr.hotio.dev/hotio/sonarr:latest
+    image: ghcr.io/hotio/sonarr:latest
     restart: unless-stopped
     logging:
       driver: json-file

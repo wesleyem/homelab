@@ -16,7 +16,7 @@ networks:
 services:
   radarr:
     container_name: radarr
-    image: cr.hotio.dev/hotio/radarr:latest
+    image: ghcr.io/hotio/radarr:latest
     restart: unless-stopped
     logging:
       driver: json-file
