@@ -14,4 +14,4 @@ services:
     environment:
       - TZ=America/Los_Angeles
     volumes:
-      - /etc/docker/prowlarr:/config
+      - $HOME/prowlarr:/config
