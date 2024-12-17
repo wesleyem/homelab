@@ -1,4 +1,11 @@
 ---
+name: traefik
+
+networks:
+  default:
+    name: white_orchard
+    external: true
+
 services:
   traefik:
     restart: unless-stopped
