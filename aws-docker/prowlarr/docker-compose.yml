@@ -6,6 +6,7 @@ networks:
 
 services:
   prowlarr:
+    hostname: prowlarr
     container_name: prowlarr
     image: ghcr.io/hotio/prowlarr
     restart: unless-stopped
