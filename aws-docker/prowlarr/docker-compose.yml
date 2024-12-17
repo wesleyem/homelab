@@ -14,4 +14,4 @@ services:
     environment:
       - TZ=America/Los_Angeles
     volumes:
-      - $HOME/prowlarr:/config
+      - /home/ubuntu/prowlarr:/config
