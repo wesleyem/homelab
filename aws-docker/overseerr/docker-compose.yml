@@ -1,0 +1,19 @@
+---
+networks:
+  default:
+    name: white_orchard
+    external: true
+
+services:
+  overseerr:
+    hostname: overseerr
+    container_name: overseerr
+    image: sctx/overseerr:latest
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+      - TZ=America/Los_Angeles
+    ports:
+      - 5055:5055
+    volumes:
+      - /home/ubuntu/overseerr:/app/config
