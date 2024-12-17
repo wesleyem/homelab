@@ -1,0 +1,17 @@
+---
+networks:
+  default:
+    name: white_orchard
+    external: true
+
+services:
+  prowlarr:
+    container_name: prowlarr
+    image: ghcr.io/hotio/prowlarr
+    restart: unless-stopped
+    ports:
+      - "9696:9696"
+    environment:
+      - TZ=America/Los_Angeles
+    volumes:
+      - /etc/docker/prowlarr:/config
