@@ -21,11 +21,11 @@ services:
       - TZ=Etc/UTC
       - SERVERURL=${WG_HOST} #optional
       - SERVERPORT=${WG_PORT} #optional
-      - PEERS=AniPhone #optional
+      - PEERS=${PEER1},${PEER2} #optional
       - PEERDNS=auto #optional
       - INTERNAL_SUBNET=10.13.13.0 #optional
       - ALLOWEDIPS=10.0.0.0/8 #optional
-      - PERSISTENTKEEPALIVE_PEERS=${PEER1} #optional
+      - PERSISTENTKEEPALIVE_PEERS=${PEER1},${PEER2} #optional
       - LOG_CONFS=true #optional
     volumes:
       - wireguard:/config
