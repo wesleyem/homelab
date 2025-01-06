@@ -11,8 +11,8 @@ services:
     networks:
       - basket
     volumes:
-      - /etc/docker/adguard/work:/opt/adguardhome/work
-      - /etc/docker/adguard/conf:/opt/adguardhome/conf
+      - /mnt/syno_docker_nfs/adguard/work:/opt/adguardhome/work
+      - /mnt/syno_docker_nfs/adguard/conf:/opt/adguardhome/conf
     ports:
       - 53:53/tcp
       - 53:53/udp
