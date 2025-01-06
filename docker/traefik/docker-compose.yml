@@ -1,6 +1,4 @@
-# defines a custom network
-version: "3"
-
+---
 networks:
   default:
     name: basket
