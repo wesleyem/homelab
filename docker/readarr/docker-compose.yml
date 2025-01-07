@@ -1,13 +1,4 @@
 ---
-volumes:
-  data:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
-      device: ":/volume1/data/"
-  readarr: {}
-
 networks:
   default:
     name: basket
@@ -23,10 +14,11 @@ services:
     ports:
       - 8787:8787
     environment:
+      UMASK: 002
       TZ: America/Los_Angeles
     volumes:
-      - readarr:/config
-      - data:/data
+      - /mnt/syno_docker/nfs/readarr:/config
+      - /mnt/syno_data_nfs:/data
     labels:
       traefik.enable: true
       traefik.http.routers.readarr-http.entrypoints: web
