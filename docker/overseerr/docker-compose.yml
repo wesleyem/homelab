@@ -15,7 +15,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - /etc/docker/overseerr:/app/config
+      - /mnt/syno_docker_nfs/overseerr:/app/config
     labels:
       traefik.enable: true
       traefik.http.services.overseerr.loadbalancer.server.port: 5055
