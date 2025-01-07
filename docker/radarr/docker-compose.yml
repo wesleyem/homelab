@@ -1,13 +1,4 @@
 ---
-volumes:
-  data:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
-      device: ":/volume1/data/"
-  radarr: {}
-
 networks:
   default:
     name: basket
@@ -23,13 +14,11 @@ services:
     ports:
       - 7878:7878
     environment:
-      PUID: 1000
-      GUID: 997
+      UMASK: 002
       TZ: America/Los_Angeles
     volumes:
-      - /etc/localtime:/etc/localtime:ro
-      - radarr:/config
-      - data:/data
+      - /mnt/syno_docker_nfs/radarr:/config
+      - /mnt/syno_data_nfs:/data
     labels:
       traefik.enable: true
       traefik.http.routers.radarr-http.entrypoints: web
