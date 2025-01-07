@@ -9,10 +9,9 @@ services:
     container_name: tautulli
     image: ghcr.io/tautulli/tautulli
     volumes:
-      - /etc/docker/tautulli:/config
+      - /mnt/syno_docker_nfs/tautulli:/config
     environment:
-      PUID: 1000
-      PGID: 1000
+      UMASK: 002
       TZ: America/Los_Angeles
     ports:
       - 8181:8181
