@@ -1,12 +1,4 @@
 ---
-volumes:
-  data:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: "addr=syno,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nolock,soft,nfsvers=4"
-      device: ":/volume1/data/"
-
 networks:
   default:
     name: basket
@@ -31,8 +23,8 @@ services:
       VPN_CONF: wg0
       PRIVOXY_ENABLED: false
     volumes:
-      - /etc/docker/qbittorrent:/config
-      - data:/data
+      - /mnt/syno_docker_nfs/qbittorrent:/config
+      - /mnt/syno_data_nfs:/data
     cap_add:
       - NET_ADMIN
     dns:
