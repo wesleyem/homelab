@@ -12,12 +12,10 @@ services:
     ports:
       - "9696:9696"
     environment:
-      - PUID=995
-      - PGID=997
       - UMASK=002
       - TZ=America/Los_Angeles
     volumes:
-      - /etc/docker/prowlarr:/config
+      - /mnt/syno_docker_nfs/prowlarr:/config
     labels:
       traefik.enable: true
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
