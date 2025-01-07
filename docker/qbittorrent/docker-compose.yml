@@ -8,13 +8,11 @@ services:
   qbittorrent:
     container_name: qbittorrent
     restart: unless-stopped
-    image: ghcr.io/hotio/qbittorrent:release-4.6.7
+    image: ghcr.io/hotio/qbittorrent:latest
     ports:
       - 8881:8080
       - 8118:8118
     environment:
-      PUID: 999
-      PGID: 997
       UMASK: 002
       TZ: Etc/UTC
       VPN_ENABLED: true
