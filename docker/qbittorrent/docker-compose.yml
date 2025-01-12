@@ -14,7 +14,7 @@ services:
       - 8118:8118
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: Etc/UTC
       VPN_ENABLED: true
