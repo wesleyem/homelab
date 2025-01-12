@@ -91,6 +91,8 @@ services:
       UMASK: 002
       TZ: America/Los_Angeles
       PLEX_CLAIM: ${PLEX_CLAIM}
+      ADVERTISE_IP: "http://plex.lan"
+      HOSTNAME: plex
     hostname: plex
     volumes:
       - /mnt/store/containers/pms/database:/config
