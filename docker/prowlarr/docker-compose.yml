@@ -1,8 +1,8 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   prowlarr:
@@ -12,16 +12,9 @@ services:
     ports:
       - "9696:9696"
     environment:
-      - UMASK=002
-      - TZ=America/Los_Angeles
+      PUID: 950
+      GUID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
     volumes:
-      - /mnt/syno_docker_nfs/prowlarr:/config
-    labels:
-      traefik.enable: true
-      traefik.http.services.prowlarr.loadbalancer.server.port: 9696
-      traefik.http.routers.prowlarr-http.entrypoints: web
-      traefik.http.routers.prowlarr-http.rule: Host(`prowlarr.home.wesleyem.com`)
-      traefik.http.routers.prowlarr-https.entrypoints: websecure
-      traefik.http.routers.prowlarr-https.rule: Host(`prowlarr.home.wesleyem.com`)
-      traefik.http.routers.prowlarr-https.tls: true
-      traefik.http.routers.prowlarr-https.tls.certresolver: production
+      - /mnt/store/containers/prowlarr:/config
