@@ -13,7 +13,7 @@ services:
       - 9696:9696
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
@@ -29,7 +29,7 @@ services:
       - 7878:7878
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
@@ -46,7 +46,7 @@ services:
       - 8989:8989
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
@@ -63,7 +63,7 @@ services:
       - 8787:8787
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
@@ -101,16 +101,16 @@ services:
 
   tautulli:
     container_name: tautulli
-    image: ghcr.io/tautulli/tautulli:latest
-    volumes:
-      - /mnt/store/containers/tautulli:/config
+    image: ghcr.io/hotio/tautulli:latest
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     ports:
       - 8181:8181
+    volumes:
+      - /mnt/store/containers/tautulli:/config
     restart: unless-stopped
 
   overseerr:
