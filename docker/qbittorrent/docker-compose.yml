@@ -1,8 +1,8 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   qbittorrent:
@@ -13,6 +13,8 @@ services:
       - 8881:8080
       - 8118:8118
     environment:
+      PUID: 950
+      GUID: 950
       UMASK: 002
       TZ: Etc/UTC
       VPN_ENABLED: true
@@ -21,8 +23,8 @@ services:
       VPN_CONF: wg0
       PRIVOXY_ENABLED: false
     volumes:
-      - /mnt/syno_docker_nfs/qbittorrent:/config
-      - /mnt/syno_data_nfs:/data
+      - /mnt/store/containers/qbittorrent:/config
+      - /mnt/store/media:/data
     cap_add:
       - NET_ADMIN
     dns:
@@ -33,12 +35,3 @@ services:
     sysctls:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv6.conf.all.disable_ipv6: 1
-    labels:
-      traefik.enable: true
-      traefik.http.services.qbittorrent.loadbalancer.server.port: 8080
-      traefik.http.routers.qbittorrent-http.entrypoints: web
-      traefik.http.routers.qbittorrent-http.rule: Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
-      traefik.http.routers.qbittorrent-https.entrypoints: websecure
-      traefik.http.routers.qbittorrent-https.rule: Host(`qbittorrent.${HOST_HOSTNAME}.home.wesleyem.com`)
-      traefik.http.routers.qbittorrent-https.tls: true
-      traefik.http.routers.qbittorrent-https.tls.certresolver: production
