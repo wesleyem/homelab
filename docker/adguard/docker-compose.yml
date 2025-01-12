@@ -1,24 +1,23 @@
 ---
 networks:
-  basket:
+  default:
     external: true
+    name: proxynet
 
 services:
   adguard:
     image: adguard/adguardhome
     container_name: adguard
     restart: unless-stopped
-    networks:
-      - basket
     volumes:
-      - /mnt/syno_docker_nfs/adguard/work:/opt/adguardhome/work
-      - /mnt/syno_docker_nfs/adguard/conf:/opt/adguardhome/conf
+      - /mnt/store/containers/adguard/work:/opt/adguardhome/work
+      - /mnt/store/containers/adguard/conf:/opt/adguardhome/conf
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - 81:80/tcp
-      - 444:443/tcp
-      - 444:443/udp
+      - 83:80/tcp
+      - 9444:443/tcp
+      - 9444:443/udp
       - 3000:3000/tcp
       - 853:853/tcp
       - 784:784/udp
@@ -26,9 +25,3 @@ services:
       - 8853:8853/udp
       - 5443:5443/tcp
       - 5443:5443/udp
-    labels:
-      traefik.enable: true
-      traefik.http.services.adguard-http-service.loadbalancer.server.port: 80
-      traefik.http.routers.adguard-http.service: adguard-http-service
-      traefik.http.routers.adguard-http.entrypoints: web
-      traefik.http.routers.adguard-http.rule: Host(`adguard.${SUBDOMAIN}.home.wesleyem.com`)
