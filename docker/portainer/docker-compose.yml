@@ -1,27 +1,18 @@
 ---
 networks:
-  basket:
+  default:
     external: true
+    name: proxynet
+
 services:
   portainer-ce:
-    networks:
-      - basket
+    container_name: portainer
     ports:
       - "8000:8000"
       - "9000:9000"
       - "9443:9443"
-    container_name: portainer
     restart: always
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - "/etc/docker/portainer/data:/data"
+      - "/mnt/store/containers/portainer/data:/data"
     image: "portainer/portainer-ce:latest"
-    labels:
-      traefik.enable: true
-      traefik.http.services.portainer.loadbalancer.server.port: 9000
-      traefik.http.routers.portainer-http.entrypoints: web
-      traefik.http.routers.portainer-http.rule: Host(`portainer.home.wesleyem.com`)
-      traefik.http.routers.portainer-https.entrypoints: websecure
-      traefik.http.routers.portainer-https.rule: Host(`portainer.home.wesleyem.com`)
-      traefik.http.routers.portainer-https.tls: true
-      traefik.http.routers.portainer-https.tls.certresolver: production
