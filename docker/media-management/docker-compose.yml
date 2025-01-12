@@ -86,8 +86,8 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
     environment:
-      PUID: 950
-      GUID: 950
+      PLEX_UID: 950
+      PLEX_GID: 950
       UMASK: 002
       TZ: America/Los_Angeles
       PLEX_CLAIM: ${PLEX_CLAIM}
