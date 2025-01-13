@@ -18,3 +18,9 @@ services:
       - /mnt/store/containers/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
+    labels:
+      homepage.group: Management
+      homepage.name: homepage
+      homepage.icon: homepage
+      homepage.href: http://homepage.lan
+      homepage.description: Homepage
