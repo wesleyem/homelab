@@ -22,6 +22,8 @@ services:
       VPN_LAN_NETWORK: 10.100.0.0/24
       VPN_CONF: wg0
       PRIVOXY_ENABLED: false
+      VPN_HEALTHCHECK_ENABLED: false
+      WEBUI_PORTS: "8080/tcp,8080/udp"
     volumes:
       - /mnt/store/containers/qbittorrent:/config
       - /mnt/store/media:/data
