@@ -36,8 +36,11 @@ services:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv6.conf.all.disable_ipv6: 1
     labels:
-      - homepage.group=Management
+      - homepage.group=Media Management
       - homepage.name=qBittorrent
       - homepage.icon=qbittorrent
       - homepage.href=http://qbt.lan/
       - homepage.description=Torrent Client
+      - homepage.widget.type=qbittorrent
+      - homepage.widget.url=http://qbt.lan
+      - homepage.widget.enableLeechProgress=true
