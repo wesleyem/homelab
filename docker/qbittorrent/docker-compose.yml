@@ -11,7 +11,6 @@ services:
     image: ghcr.io/hotio/qbittorrent:latest
     ports:
       - 8080:8080
-      - 8118:8118
     environment:
       PUID: 950
       PGID: 950
@@ -19,11 +18,9 @@ services:
       TZ: Etc/UTC
       VPN_ENABLED: true
       VPN_PROVIDER: proton
-      VPN_LAN_NETWORK: 10.100.0.0/16,172.16.1.0/24
+      VPN_LAN_NETWORK: 10.100.0.0/16
       VPN_CONF: wg0
       PRIVOXY_ENABLED: false
-      VPN_HEALTHCHECK_ENABLED: false
-      WEBUI_PORTS: "8080/tcp,8080/udp"
     volumes:
       - /mnt/store/containers/qbittorrent:/config
       - /mnt/store/media:/data
