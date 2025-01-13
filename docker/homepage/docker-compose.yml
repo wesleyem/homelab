@@ -5,18 +5,6 @@ networks:
     name: proxynet
 
 services:
-  dockerproxy:
-    image: ghcr.io/tecnativa/docker-socket-proxy:latest
-    container_name: dockerproxy
-    environment:
-      - CONTAINERS=1 # Allow access to viewing containers
-      - POST=0 # Disallow any POST operations (effectively read-only)
-    ports:
-      - 127.0.0.1:2375:2375
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
-    restart: unless-stopped
-
   homepage:
     container_name: homepage
     image: ghcr.io/gethomepage/homepage:latest
@@ -24,10 +12,11 @@ services:
       - 3001:3000
     hostname: homepage
     environment:
-      PUID: 950
-      PGID: 950
+      PUID: 0
+      PGID: 0
     volumes:
       - /mnt/store/containers/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
     labels:
       homepage.group: Management
