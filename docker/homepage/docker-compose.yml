@@ -1,8 +1,8 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   homepage:
@@ -11,14 +11,6 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - /etc/docker/homepage:/app/config
+      - /mnt/store/containers/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
-    labels:
-      traefik.enable: true
-      traefik.http.routers.homepage-http.entrypoints: web
-      traefik.http.routers.homepage-http.rule: Host(`homepage.home.wesleyem.com`)
-      traefik.http.routers.homepage-https.entrypoints: websecure
-      traefik.http.routers.homepage-https.rule: Host(`homepage.home.wesleyem.com`)
-      traefik.http.routers.homepage-https.tls: true
-      traefik.http.routers.homepage-https.tls.certresolver: production
