@@ -1,0 +1,15 @@
+---
+title: My Awesome Homepage
+headerStyle: boxed
+
+background:
+  image: https://images.unsplash.com/photo-1735299362091-33c94b71a758
+  blur: xl
+  brightness: 90
+  opacity: 60
+
+cardBlur: sm
+
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey

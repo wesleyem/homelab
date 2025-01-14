@@ -1,0 +1,8 @@
+---
+- Repositories:
+    - Homelab:
+        - icon: si-github-#FFFFFF
+          href: https://github.com/wesleyem/homelab
+    - Octorunner:
+        - icon: si-github-#FFFFFF
+          href: https://github.com/wesleyem/octorunner
