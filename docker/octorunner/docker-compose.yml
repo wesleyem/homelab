@@ -1,6 +1,20 @@
 ---
 services:
-  github-runner:
+  github-runner-1:
+    image: ghcr.io/wesleyem/octorunner:latest
+    container_name: github-runner
+    environment:
+      REPO: wesleyem/homelab
+      TOKEN: ${RUNNER_TOKEN}
+
+  github-runner-2:
+    image: ghcr.io/wesleyem/octorunner:latest
+    container_name: github-runner
+    environment:
+      REPO: wesleyem/homelab
+      TOKEN: ${RUNNER_TOKEN}
+
+  github-runner-3:
     image: ghcr.io/wesleyem/octorunner:latest
     container_name: github-runner
     environment:
