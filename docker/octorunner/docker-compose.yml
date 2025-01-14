@@ -1,19 +1,10 @@
 ---
 services:
-  github-runner-1:
+  github-runner:
+    container_name: github-runner
     image: ghcr.io/wesleyem/octorunner:latest
     environment:
       REPO: wesleyem/homelab
       TOKEN: ${RUNNER_TOKEN}
-
-  github-runner-2:
-    image: ghcr.io/wesleyem/octorunner:latest
-    environment:
-      REPO: wesleyem/homelab
-      TOKEN: ${RUNNER_TOKEN}
-
-  github-runner-3:
-    image: ghcr.io/wesleyem/octorunner:latest
-    environment:
-      REPO: wesleyem/homelab
-      TOKEN: ${RUNNER_TOKEN}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
