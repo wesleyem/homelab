@@ -4,5 +4,5 @@ services:
     image: ghcr.io/wesleyem/octorunner:latest
     container_name: github-runner
     environment:
-      REPO_URL: https://github.com/wesleyem/homelab
+      REPO: wesleyem/homelab
       TOKEN: ${RUNNER_TOKEN}
