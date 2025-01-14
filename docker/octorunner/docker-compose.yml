@@ -5,4 +5,4 @@ services:
     container_name: github-runner
     environment:
       REPO_URL: https://github.com/wesleyem/homelab
-      RUNNER_TOKEN: ${RUNNER_TOKEN}
+      TOKEN: ${RUNNER_TOKEN}
