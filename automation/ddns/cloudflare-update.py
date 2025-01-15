@@ -1,3 +1,4 @@
+import sys
 import requests
 import time
 from cloudflare import Cloudflare
@@ -17,7 +18,7 @@ def get_public_ip():
         return response.text
     except requests.RequestException as e:
         print(f"Error fetching public IP: {e}")
-        return None
+        sys.exit(1)
 
 def update_cloudflare_record(cf, ip):
     """Update the Cloudflare DNS record."""
@@ -27,6 +28,7 @@ def update_cloudflare_record(cf, ip):
         print(f"Updated Cloudflare DNS record to IP: {ip}")
     except Exception as e:
         print(f"Error updating Cloudflare DNS record: {e}")
+        sys.exit(1)
 
 def main():
     """Monitor IP changes and update Cloudflare."""
