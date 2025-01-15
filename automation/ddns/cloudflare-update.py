@@ -20,27 +20,27 @@ def get_public_ip():
         print(f"Error fetching public IP: {e}")
         sys.exit(1)
 
-def update_cloudflare_record(cf, ip):
+def update_cloudflare_record(ip):
+    """Monitor IP changes and edit Cloudflare."""
+    client = Cloudflare(
+        api_email=API_EMAIL,
+        api_key=API_TOKEN
+    )
     """Edit the Cloudflare DNS record."""
     try:
         # Edit the DNS record
-        cf.dns.records.edit(dns_record_id=DNS_RECORD_ID, zone_id=ZONE_ID, content=ip)
+        client.dns.records.edit(dns_record_id=DNS_RECORD_ID, zone_id=ZONE_ID, content=ip)
         print(f"Edited Cloudflare DNS record to IP: {ip}")
     except Exception as e:
         print(f"Error editing Cloudflare DNS record: {e}")
         sys.exit(1)
 
 def main():
-    """Monitor IP changes and edit Cloudflare."""
-    cf = Cloudflare(
-        api_email=API_EMAIL,
-        api_key=API_TOKEN
-        )
     current_ip = get_public_ip()
 
     if current_ip:
         print(f"Detected IP: {current_ip}")
-        update_cloudflare_record(cf, current_ip)
+        update_cloudflare_record(current_ip)
 
 if __name__ == "__main__":
     main()
