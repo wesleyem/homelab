@@ -24,7 +24,7 @@ def update_cloudflare_record(cf, ip):
     """Update the Cloudflare DNS record."""
     try:
         # Update the DNS record
-        cf.dns.records.update(zone_id=ZONE_ID, dns_record_id=DNS_RECORD_ID, content=ip)
+        cf.dns.records.update(dns_record_id=DNS_RECORD_ID, zone_id=ZONE_ID, content=ip)
         print(f"Updated Cloudflare DNS record to IP: {ip}")
     except Exception as e:
         print(f"Error updating Cloudflare DNS record: {e}")
