@@ -5,6 +5,7 @@ import os
 
 # Configuration from environment variables
 API_TOKEN = os.getenv("CLOUDFLARE_API_TOKEN")
+API_EMAIL = os.getenv("CLOUDFLARE_API_EMAIL")
 ZONE_ID = os.getenv("ZONE_ID")
 DNS_RECORD_ID = os.getenv("DNS_RECORD_ID")
 CHECK_INTERVAL = 300  # This interval is unused when run in GitHub Actions
@@ -41,7 +42,10 @@ def update_cloudflare_record(cf, ip):
 
 def main():
     """Monitor IP changes and update Cloudflare."""
-    cf = Cloudflare(token=API_TOKEN)
+    cf = Cloudflare(
+        api_email=API_EMAIL,
+        api_key=API_TOKEN
+        )
     current_ip = get_public_ip()
 
     if current_ip:
