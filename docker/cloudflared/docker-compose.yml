@@ -1,4 +1,9 @@
 ---
+networks:
+  default:
+    external: true
+    name: proxynet
+
 name: Cloudflared
 services:
   cloudflared:
