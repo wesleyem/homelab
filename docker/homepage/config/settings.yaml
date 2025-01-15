@@ -13,3 +13,11 @@ cardBlur: sm
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+
+layout:
+  Networking:
+    icon: mdi-network-#FFFFFF
+  Infrastructure and Data:
+    icon: mdi-server-#FFFFFF
+  Management:
+    icon: mdi-auto-fix-#FFFFFF
