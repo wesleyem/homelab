@@ -33,8 +33,8 @@
         widget:
           type: npm
           url: http://npm.lan
-          username: { { HOMEPAGE_VAR_NPM_USERNAME } }
-          password: { { HOMEPAGE_VAR_NPM_PASSWORD } }
+          username: ${HOMEPAGE_VAR_NPM_USERNAME}
+          password: ${HOMEPAGE_VAR_NPM_PASSWORD}
 
 - Infrastructure and Data:
     - TrueNAS Scale:
@@ -45,7 +45,7 @@
         widget:
           type: truenas
           url: http://kevin.lan
-          key: { { HOMEPAGE_VAR_TRUENAS_KEY } }
+          key: ${HOMEPAGE_VAR_TRUENAS_KEY}
           enablePools: true
           nasType: scale
 
@@ -72,8 +72,8 @@
         widget:
           type: adguard
           url: http://adguard.lan
-          username: { { HOMEPAGE_VAR_ADGUARD_USERNAME } }
-          password: { { HOMEPAGE_VAR_ADGUARD_PASSWORD } }
+          username: ${HOMEPAGE_VAR_ADGUARD_USERNAME}
+          password: ${HOMEPAGE_VAR_ADGUARD_PASSWORD}
 
 - Management:
     - Portainer:
@@ -86,7 +86,7 @@
           type: portainer
           url: http://portainer.lan
           env: 2
-          key: { { HOMEPAGE_VAR_PORTAINER_KEY } }
+          key: ${HOMEPAGE_VAR_PORTAINER_KEY}
 
     - Homepage:
         href: http://homepage.lan
@@ -103,5 +103,5 @@
         container: cloudflared
         widget:
           type: cloudflared
-          tunnelid: { { HOMEPAGE_VAR_CLOUDFLARED_TUNNELID } }
-          key: { { HOMEPAGE_VAR_CLOUDFLARED_KEY } }
+          tunnelid: ${HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}
+          key: ${HOMEPAGE_VAR_CLOUDFLARED_KEY}
