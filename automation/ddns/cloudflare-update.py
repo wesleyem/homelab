@@ -21,17 +21,17 @@ def get_public_ip():
         sys.exit(1)
 
 def update_cloudflare_record(cf, ip):
-    """Update the Cloudflare DNS record."""
+    """Edit the Cloudflare DNS record."""
     try:
-        # Update the DNS record
-        cf.dns.records.update(dns_record_id=DNS_RECORD_ID, zone_id=ZONE_ID, content=ip)
-        print(f"Updated Cloudflare DNS record to IP: {ip}")
+        # Edit the DNS record
+        cf.dns.records.edit(dns_record_id=DNS_RECORD_ID, zone_id=ZONE_ID, content=ip)
+        print(f"Edited Cloudflare DNS record to IP: {ip}")
     except Exception as e:
-        print(f"Error updating Cloudflare DNS record: {e}")
+        print(f"Error editing Cloudflare DNS record: {e}")
         sys.exit(1)
 
 def main():
-    """Monitor IP changes and update Cloudflare."""
+    """Monitor IP changes and edit Cloudflare."""
     cf = Cloudflare(
         api_email=API_EMAIL,
         api_key=API_TOKEN
