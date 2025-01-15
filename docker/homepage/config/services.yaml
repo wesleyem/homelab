@@ -28,7 +28,8 @@
         href: http://npm.lan
         icon: si-nginxproxymanager
         description: nginx proxy manager
-        siteMonitor: http://npm.lan
+        server: kevins_dockerproxy
+        container: nginx-proxy-manager
         widget:
           type: npm
           url: http://npm.lan
@@ -52,18 +53,21 @@
         href: http://github.com/wesleyem/homelab/
         icon: si-github
         description: octorunner
+        server: kevins_dockerproxy
         container: github-runner
 
     - Docker Proxy:
         href: http://portainer.lan
         icon: si-docker
         description: docker proxy
+        server: kevins_dockerproxy
         container: dockerproxy
 
     - AdGuard Home:
         href: http://adguard.lan
         icon: si-adguard
         description: DNS Server
+        server: kevins_dockerproxy
         container: adguard
         widget:
           type: adguard
@@ -76,6 +80,8 @@
         href: http://portainer.lan
         icon: si-portainer
         description: portainer
+        server: kevins_dockerproxy
+        container: portainer
         widget:
           type: portainer
           url: http://portainer.lan
@@ -86,12 +92,14 @@
         href: http://homepage.lan
         icon: si-homepage
         description: My Awesome Homepage
+        server: kevins_dockerproxy
         container: homepage
 
     - Cloudflare Tunnel:
         href: https://dash.cloudflare.com
         icon: si-cloudflare
         description: Cloudflare Tunnels
+        server: kevins_dockerproxy
         container: cloudflared
         widget:
           type: cloudflared
