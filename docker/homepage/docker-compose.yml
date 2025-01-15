@@ -23,9 +23,13 @@ services:
     ports:
       - 3001:3000
     hostname: homepage
-    environment:
-      PUID: 0
-      PGID: 0
     volumes:
       - /mnt/store/containers/homepage:/app/config
     restart: unless-stopped
+    environment:
+      PUID: 0
+      PGID: 0
+      HOMEPAGE_VAR_TRUENAS_KEY: ${HOMEPAGE_VAR_TRUENAS_KEY}
+      HOMEPAGE_VAR_PORTAINER_KEY: ${HOMEPAGE_VAR_PORTAINER_KEY}
+      HOMEPAGE_VAR_ADGUARD_USERNAME: ${HOMEPAGE_VAR_ADGUARD_USERNAME}
+      HOMEPAGE_VAR_ADGUARD_PASSWORD: ${HOMEPAGE_VAR_ADGUARD_PASSWORD}
