@@ -13,22 +13,29 @@ jobs:
     runs-on: "self-hosted"
 
     steps:
-      # Checkout the repository
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Use native SCP to transfer files
+      - name: Create SSH Key File
+        run: |
+          echo "${{ secrets.SSH_TNA_KEY }}" > ~/.ssh/homepage_key
+          chmod 600 ~/.ssh/homepage_key
+
       - name: Copy Config Files via SCP
         run: |
-          echo "${{ secrets.SSH_TNA_KEY }}" | scp -i /dev/stdin \
+          scp -i ~/.ssh/homepage_key \
               -o StrictHostKeyChecking=no \
               -r ./docker/homepage/config/* \
               ${{ secrets.SSH_TNA_USERNAME }}@${{ secrets.HOST }}:/mnt/store/containers/homepage/
 
-      # Use native SSH to restart the container
       - name: Restart Docker Container via SSH
         run: |
-          echo "${{ secrets.SSH_TNA_KEY }}" | ssh -i /dev/stdin \
+          ssh -i ~/.ssh/homepage_key \
               -o StrictHostKeyChecking=no \
               ${{ secrets.SSH_TNA_USERNAME }}@${{ secrets.HOST }} \
               "docker container restart homepage"
+
+      - name: Remove SSH Key File
+        if: always()
+        run: |
+          rm -f ~/.ssh/homepage_key
