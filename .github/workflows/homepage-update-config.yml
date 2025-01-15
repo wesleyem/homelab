@@ -20,7 +20,7 @@ jobs:
       # Use native SCP to transfer files
       - name: Copy Config Files via SCP
         run: |
-          scp -i "${{ secrets.SSH_TNA_KEY }}" \
+          echo "${{ secrets.SSH_TNA_KEY }}" | scp -i /dev/stdin \
               -o StrictHostKeyChecking=no \
               -r ./docker/homepage/config/* \
               ${{ secrets.SSH_TNA_USERNAME }}@${{ secrets.HOST }}:/mnt/store/containers/homepage/
@@ -28,7 +28,7 @@ jobs:
       # Use native SSH to restart the container
       - name: Restart Docker Container via SSH
         run: |
-          ssh -i "${{ secrets.SSH_TNA_KEY }}" \
+          echo "${{ secrets.SSH_TNA_KEY }}" | ssh -i /dev/stdin \
               -o StrictHostKeyChecking=no \
               ${{ secrets.SSH_TNA_USERNAME }}@${{ secrets.HOST }} \
               "docker container restart homepage"
