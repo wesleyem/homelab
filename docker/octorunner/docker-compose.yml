@@ -8,3 +8,4 @@ services:
       TOKEN: ${RUNNER_TOKEN}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    user: 1001:101
