@@ -1,4 +1,9 @@
 ---
+networks:
+  default:
+    external: true
+    name: proxynet
+
 services:
   wg-easy:
     container_name: wg-easy
