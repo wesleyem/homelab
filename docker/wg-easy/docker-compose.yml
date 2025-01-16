@@ -27,3 +27,4 @@ services:
       PORT: 51821
       WG_PORT: 51820
       WG_ALLOWED_IPS: 10.0.0.0/8
+      WG_DEFAULT_DNS: 10.100.72.197
