@@ -29,7 +29,7 @@ def update_cloudflare_record(ip, api_token, zone_id, dns_record_id):
             zone_id=zone_id,
             content=ip
         )
-        print(f"Successfully updated DNS record to IP: {response.content}")
+        print(f"Successfully updated DNS record to IP")
     except Exception as e:
         print(f"Error editing Cloudflare DNS record: {e}")
         sys.exit(1)
@@ -54,7 +54,7 @@ def main():
     current_ip = get_public_ip()
 
     if current_ip:
-        print(f"Detected IP: {current_ip}")
+        print(f"Detected IP")
         # Update the Cloudflare DNS record
         update_cloudflare_record(
             current_ip,
