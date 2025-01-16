@@ -1,7 +1,0 @@
-- hosts: "proxmox"
-  tasks:
-    # Install python3-docker
-    - name: install python3-docker
-      apt:
-        name: python3-docker
-        update_cache: yes

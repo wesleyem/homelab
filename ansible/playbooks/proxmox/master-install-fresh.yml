@@ -1,8 +1,0 @@
----
-- name: Master fresh install playbook
-  hosts: "proxmox"
-  tasks:
-    - name: Run Install Fresh playbook
-      include_tasks: install-fresh.yml
-    - name: Run Install Docker playbook
-      include_tasks: install-docker.yml
