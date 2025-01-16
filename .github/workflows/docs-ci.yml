@@ -1,0 +1,36 @@
+name: Docs CI
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "automation/**/*.md"
+      - "docker/**/*.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  Deploy-Docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
+      - uses: actions/cache@v4
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material
+      - run: mkdocs gh-deploy --force
