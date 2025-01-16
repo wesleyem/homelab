@@ -75,6 +75,17 @@
           username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
           password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
 
+    - WireGuard:
+        href: http://wg.lan
+        icon: si-wireguard
+        description: wireguard vpn
+        server: kevins_dockerproxy
+        container: wg-easy
+        widget:
+          type: wgeasy
+          url: http://wg.lan
+          password: {{HOMEPAGE_VAR_WGEASY_PASSWORD}}
+
 - Management:
     - Portainer:
         href: http://portainer.lan
