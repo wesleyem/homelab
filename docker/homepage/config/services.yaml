@@ -49,6 +49,18 @@
           enablePools: true
           nasType: scale
 
+    - Synology:
+        href: http://syno.lan
+        icon: si-synology
+        description: Synology D218+
+        siteMonitor: http://syno.lan
+        widget:
+          type: diskstation
+          url: http://syno.lan
+          username: {{HOMEPAGE_VAR_SYNO_USERNAME}}
+          password: {{HOMEPAGE_VAR_SYNO_PASSWORD}}
+          volume: volume_1
+
     - GitHub Runner:
         href: http://github.com/wesleyem/homelab/
         icon: si-github
