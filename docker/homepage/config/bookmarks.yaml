@@ -9,3 +9,29 @@
     - Octorunner:
         - icon: si-github-#FFFFFF
           href: https://github.com/wesleyem/octorunner
+
+- Services:
+    - Plex:
+        - icon: plex-#FFFFFF
+          href: http://plex.lan
+    - Overseerr:
+        - icon: overseerr-#FFFFFF
+          href: http://overseerr.lan
+    - Tautulli:
+        - icon: tautulli-#FFFFFF
+          href: http://tautulli.lan
+    - Radarr:
+        - icon: radarr-#FFFFFF
+          href: http://radarr.lan
+    - Sonarr:
+        - icon: sonarr-#FFFFFF
+          href: http://sonarr.lan
+    - Prowlarr:
+        - icon: prowlarr-#FFFFFF
+          href: http://prowlarr.lan
+    - qBittorrent:
+        - icon: qbittorrent-#FFFFFF
+          href: http://qbittorrent.lan
+    - Readarr:
+        - icon: readarr-#FFFFFF
+          href: http://readarr.lan
