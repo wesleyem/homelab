@@ -12,26 +12,26 @@
 
 - Services:
     - Plex:
-        - icon: plex-#FFFFFF
+        - icon: si-plex-#FFFFFF
           href: http://plex.lan
     - Overseerr:
-        - icon: overseerr-#FFFFFF
+        - icon: si-overseerr-#FFFFFF
           href: http://overseerr.lan
     - Tautulli:
-        - icon: tautulli-#FFFFFF
+        - icon: si-tautulli-#FFFFFF
           href: http://tautulli.lan
     - Radarr:
-        - icon: radarr-#FFFFFF
+        - icon: si-radarr-#FFFFFF
           href: http://radarr.lan
     - Sonarr:
-        - icon: sonarr-#FFFFFF
+        - icon: si-sonarr-#FFFFFF
           href: http://sonarr.lan
     - Prowlarr:
-        - icon: prowlarr-#FFFFFF
+        - icon: si-prowlarr-#FFFFFF
           href: http://prowlarr.lan
     - qBittorrent:
-        - icon: qbittorrent-#FFFFFF
+        - icon: si-qbittorrent-#FFFFFF
           href: http://qbt.lan
     - Readarr:
-        - icon: readarr-#FFFFFF
+        - icon: si-readarr-#FFFFFF
           href: http://readarr.lan
