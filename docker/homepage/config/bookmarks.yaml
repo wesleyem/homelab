@@ -31,7 +31,7 @@
           href: http://prowlarr.lan
     - qBittorrent:
         - icon: qbittorrent-#FFFFFF
-          href: http://qbittorrent.lan
+          href: http://qbt.lan
     - Readarr:
         - icon: readarr-#FFFFFF
           href: http://readarr.lan
