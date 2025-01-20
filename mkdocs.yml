@@ -7,7 +7,6 @@ theme:
 nav:
   - Home: index.md
   - Docker:
-      - Main: docker/index.md
       - AdGuard Home: docker/adguard/index.md
       - Cloudflared: docker/cloudflared/index.md
       - Homepage: docker/homepage/index.md
