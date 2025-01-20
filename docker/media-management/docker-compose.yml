@@ -55,6 +55,7 @@ services:
 
   readarr:
     container_name: readarr
+    hostname: readarr
     image: ghcr.io/hotio/readarr:latest
     restart: unless-stopped
     logging:
@@ -72,6 +73,7 @@ services:
 
   readarr-audio:
     container_name: readarr-audio
+    hostname: readarr-audio
     image: ghcr.io/hotio/readarr:latest
     restart: unless-stopped
     logging:
