@@ -35,3 +35,6 @@
     - Readarr:
         - icon: si-readarr-#FFFFFF
           href: http://readarr.lan
+    - Readarr Audiobooks:
+        - icon: si-readarr-#FFFFFF
+          href: http://readarr-audio.lan
