@@ -70,6 +70,23 @@ services:
       - /mnt/store/containers/readarr:/config
       - /mnt/store/media:/data
 
+  readarr-audio:
+    container_name: readarr-audio
+    image: ghcr.io/hotio/readarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    ports:
+      - 8787:8787
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+    volumes:
+      - /mnt/store/containers/readarr-audio:/config
+      - /mnt/store/media:/data
+
   plex:
     devices:
       - /dev/dri:/dev/dri
