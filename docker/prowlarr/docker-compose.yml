@@ -7,13 +7,13 @@ networks:
 services:
   prowlarr:
     container_name: prowlarr
-    image: ghcr.io/hotio/prowlarr
+    image: ghcr.io/hotio/prowlarr:latest
     restart: unless-stopped
     ports:
-      - "9696:9696"
+      - 9696:9696
     environment:
       PUID: 950
-      GUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
