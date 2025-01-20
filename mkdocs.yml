@@ -11,7 +11,14 @@ nav:
       - AdGuard Home: docker/adguard/index.md
       - Cloudflared: docker/cloudflared/index.md
       - Homepage: docker/homepage/index.md
-      - Media Management: docker/media-management/index.md
+      - Overseerr: docker/overseerr/index.md
+      - Plex: docker/plex/index.md
+      - Prowlarr: docker/prowlarr/index.md
+      - Radarr: docker/radarr/index.md
+      - Readarr: docker/readarr/index.md
+      - Readarr-audio: docker/readarr-audio/index.md
+      - Sonarr: docker/sonarr/index.md
+      - Tautulli: docker/tautulli/index.md
       - Nginx Proxy Manager: docker/nginx-proxy-manager/index.md
       - Octorunner: docker/octorunner/index.md
       - Portainer: docker/portainer/index.md
