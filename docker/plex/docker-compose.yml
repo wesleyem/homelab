@@ -1,9 +1,13 @@
 ---
+networks:
+  default:
+    external: true
+    name: proxynet
+
 services:
   plex:
     devices:
-      - /dev/dri/renderD128:/dev/dri/renderD128
-      - /dev/dri/card0:/dev/dri/card0
+      - /dev/dri:/dev/dri
     container_name: plex
     image: plexinc/pms-docker
     restart: unless-stopped
@@ -17,11 +21,15 @@ services:
       - 32413:32413/udp
       - 32414:32414/udp
     environment:
-      - TZ=America/Los_Angeles
-      - PLEX_CLAIM=${PLEX_CLAIM}
-      - ADVERTISE_IP=${ADVERTISEIP}
-    hostname: ${HOST_HOSTNAME}
+      PLEX_UID: 950
+      PLEX_GID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+      PLEX_CLAIM: ${PLEX_CLAIM}
+      ADVERTISE_IP: "http://plex.lan"
+      HOSTNAME: plex
+    hostname: plex
     volumes:
-      - /volume1/docker/pms/database:/config
-      - /volume1/docker/pms/transcode:/transcode
-      - /volume1/data/media:/data
+      - /mnt/store/containers/pms/database:/config
+      - /mnt/store/containers/pms/transcode:/transcode
+      - /mnt/store/media:/data

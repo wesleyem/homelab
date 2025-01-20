@@ -1,8 +1,8 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   overseerr:
@@ -10,19 +10,9 @@ services:
     image: sctx/overseerr:latest
     restart: unless-stopped
     environment:
-      - LOG_LEVEL=info
-      - TZ=America/Los_Angeles
+      LOG_LEVEL: info
+      TZ: America/Los_Angeles
     ports:
       - 5055:5055
     volumes:
-      - /mnt/syno_docker_nfs/overseerr:/app/config
-    labels:
-      traefik.enable: true
-      traefik.http.services.overseerr.loadbalancer.server.port: 5055
-      traefik.http.routers.overseerr-http.entrypoints: web
-      traefik.http.routers.overseerr-http.rule: Host(`overseerr.home.wesleyem.com`, `os.wesleyem.com`)
-      traefik.http.routers.overseerr-https.entrypoints: websecure
-      traefik.http.routers.overseerr-https.rule: Host(`overseerr.home.wesleyem.com`, `os.wesleyem.com`)
-      traefik.http.routers.overseerr-https.tls: true
-      traefik.http.routers.overseerr-https.tls.certresolver: production
-      traefik.http.routers.overseerr-https.tls.domains[0].main: overseerr.home.wesleyem.com
+      - /mnt/store/containers/overseerr:/app/config

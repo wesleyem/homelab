@@ -1,27 +1,20 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   tautulli:
     container_name: tautulli
-    image: ghcr.io/tautulli/tautulli
-    volumes:
-      - /mnt/syno_docker_nfs/tautulli:/config
+    image: ghcr.io/hotio/tautulli:latest
     environment:
+      PUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     ports:
       - 8181:8181
+    volumes:
+      - /mnt/store/containers/tautulli:/config
     restart: unless-stopped
-    labels:
-      traefik.enable: true
-      traefik.http.services.tautulli.loadbalancer.server.port: 8181
-      traefik.http.routers.tautulli-http.entrypoints: web
-      traefik.http.routers.tautulli-http.rule: Host(`tautulli.home.wesleyem.com`)
-      traefik.http.routers.tautulli-https.entrypoints: websecure
-      traefik.http.routers.tautulli-https.rule: Host(`tautulli.home.wesleyem.com`)
-      traefik.http.routers.tautulli-https.tls: true
-      traefik.http.routers.tautulli-https.tls.certresolver: production

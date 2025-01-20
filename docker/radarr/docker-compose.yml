@@ -1,8 +1,8 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   radarr:
@@ -14,16 +14,10 @@ services:
     ports:
       - 7878:7878
     environment:
+      PUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
-      - /mnt/syno_docker_nfs/radarr:/config
-      - /mnt/syno_data_nfs:/data
-    labels:
-      traefik.enable: true
-      traefik.http.routers.radarr-http.entrypoints: web
-      traefik.http.routers.radarr-http.rule: Host(`radarr.home.wesleyem.com`)
-      traefik.http.routers.radarr-https.entrypoints: websecure
-      traefik.http.routers.radarr-https.rule: Host(`radarr.home.wesleyem.com`)
-      traefik.http.routers.radarr-https.tls: true
-      traefik.http.routers.radarr-https.tls.certresolver: production
+      - /mnt/store/containers/radarr:/config
+      - /mnt/store/media:/data

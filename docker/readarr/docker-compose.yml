@@ -1,12 +1,13 @@
 ---
 networks:
   default:
-    name: basket
     external: true
+    name: proxynet
 
 services:
   readarr:
     container_name: readarr
+    hostname: readarr
     image: ghcr.io/hotio/readarr:latest
     restart: unless-stopped
     logging:
@@ -14,16 +15,10 @@ services:
     ports:
       - 8787:8787
     environment:
+      PUID: 950
+      PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
-      - /mnt/syno_docker/nfs/readarr:/config
-      - /mnt/syno_data_nfs:/data
-    labels:
-      traefik.enable: true
-      traefik.http.routers.readarr-http.entrypoints: web
-      traefik.http.routers.readarr-http.rule: Host(`readarr.home.wesleyem.com`)
-      traefik.http.routers.readarr-https.entrypoints: websecure
-      traefik.http.routers.readarr-https.rule: Host(`readarr.home.wesleyem.com`)
-      traefik.http.routers.readarr-https.tls: true
-      traefik.http.routers.readarr-https.tls.certresolver: production
+      - /mnt/store/containers/readarr:/config
+      - /mnt/store/media:/data

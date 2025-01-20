@@ -5,19 +5,20 @@ networks:
     name: proxynet
 
 services:
-  sonarr:
-    container_name: sonarr
-    image: ghcr.io/hotio/sonarr:latest
+  readarr-audio:
+    container_name: readarr-audio
+    hostname: readarr-audio
+    image: ghcr.io/hotio/readarr:latest
     restart: unless-stopped
     logging:
       driver: json-file
     ports:
-      - 8989:8989
+      - 8788:8787
     environment:
       PUID: 950
       PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
     volumes:
-      - /mnt/store/containers/sonarr:/config
+      - /mnt/store/containers/readarr-audio:/config
       - /mnt/store/media:/data
