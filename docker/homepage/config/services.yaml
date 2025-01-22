@@ -62,11 +62,18 @@
           volume: volume_1
 
     - GitHub Runner:
-        href: http://github.com/wesleyem/homelab/
+        href: http://portainer.lan
         icon: si-github
-        description: octorunner
+        description: GH runner
         server: kevins_dockerproxy
         container: github-runner
+
+    - GitHub Runner Alt:
+        href: http://portainer.lan
+        icon: si-github
+        description: alternate GH runner
+        server: kevins_dockerproxy
+        container: github-runner-alt
 
     - Docker Proxy:
         href: http://portainer.lan
