@@ -136,3 +136,14 @@
           accountid: {{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}
           tunnelid: {{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}
           key: {{HOMEPAGE_VAR_CLOUDFLARED_KEY}}
+
+    - Watchtower:
+        href: http://portainer.lan
+        icon: si-watchtower
+        description: Container version management
+        server: kevins_dockerproxy
+        container: watchtower
+        widget:
+          type: watchtower
+          url: http://watchtower.lan
+          key: {{HOMEPAGE_VAR_WATCHTOWER_KEY}}
