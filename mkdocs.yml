@@ -23,6 +23,7 @@ nav:
       - Portainer: docker/portainer/index.md
       - qBittorrent: docker/qbittorrent/index.md
       - WireGuard: docker/wg-easy/index.md
+      - Watchtower: docker/watchtower/index.md
   - Automation:
       - Main: automation/index.md
       - Cloudflare DNS Update: automation/ddns/index.md
