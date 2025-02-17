@@ -35,6 +35,11 @@ services:
     restart: always
     healthcheck:
       disable: false
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATA_LOCATION: ${DB_DATA_LOCATION}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -49,6 +54,11 @@ services:
     restart: always
     healthcheck:
       disable: false
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATA_LOCATION: ${DB_DATA_LOCATION}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
 
   redis:
     container_name: immich_redis
@@ -56,6 +66,11 @@ services:
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATA_LOCATION: ${DB_DATA_LOCATION}
+      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
 
   database:
     container_name: immich_postgres
