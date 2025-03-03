@@ -9,7 +9,7 @@ services:
     devices:
       - /dev/dri:/dev/dri
     container_name: plex
-    image: plexinc/pms-docker:1.41.3.9314-a0bfb8370
+    image: plexinc/pms-docker:latest
     restart: unless-stopped
     ports:
       - 32400:32400/tcp
