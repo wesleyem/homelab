@@ -6,3 +6,4 @@ services:
     environment:
       REPO: ${RUNNER_REPO}
       TOKEN: ${RUNNER_TOKEN}
+    restart: unless-stopped
