@@ -147,3 +147,10 @@
           type: watchtower
           url: http://watchtower.lan
           key: {{HOMEPAGE_VAR_WATCHTOWER_KEY}}
+    
+    - Coder:
+        href: http://coder.lan
+        icon: si-coder
+        description: Cloud Development Environment
+        server: kevins_dockerproxy
+        container: coder
