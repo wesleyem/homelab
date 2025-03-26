@@ -1,0 +1,12 @@
+udp:
+  routers:
+    adguard-jedi:
+      entryPoints:
+        - dns
+      service: jedi
+
+  services:
+    jedi:
+      loadBalancer:
+        servers:
+          - address: "10.100.0.89"
