@@ -54,6 +54,7 @@ services:
   app:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
+    container_name: rxresume
     ports:
       - "3002:3000"
     depends_on:
