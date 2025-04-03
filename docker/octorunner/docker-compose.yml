@@ -1,0 +1,9 @@
+---
+services:
+  github-runner:
+    container_name: github-runner
+    image: ghcr.io/wesleyem/octorunner:latest
+    environment:
+      REPO: wesleyem/homelab
+      TOKEN: ${RUNNER_TOKEN}
+    restart: unless-stopped
