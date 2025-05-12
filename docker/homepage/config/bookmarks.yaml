@@ -1,0 +1,40 @@
+---
+- Repositories:
+    - Homelab:
+        - icon: si-github-#FFFFFF
+          href: https://github.com/wesleyem/homelab
+    - Homelab Docs:
+        - icon: si-github-#FFFFFF
+          href: https://wesleyem.github.io/homelab/
+    - Octorunner:
+        - icon: si-github-#FFFFFF
+          href: https://github.com/wesleyem/octorunner
+
+- Services:
+    - Plex:
+        - icon: si-plex-#FFFFFF
+          href: http://plex.lan
+    - Overseerr:
+        - icon: si-overseerr-#FFFFFF
+          href: http://overseerr.lan
+    - Tautulli:
+        - icon: si-tautulli-#FFFFFF
+          href: http://tautulli.lan
+    - Radarr:
+        - icon: si-radarr-#FFFFFF
+          href: http://radarr.lan
+    - Sonarr:
+        - icon: si-sonarr-#FFFFFF
+          href: http://sonarr.lan
+    - Prowlarr:
+        - icon: si-prowlarr-#FFFFFF
+          href: http://prowlarr.lan
+    - qBittorrent:
+        - icon: si-qbittorrent-#FFFFFF
+          href: http://qbt.lan
+    - Readarr:
+        - icon: si-readarr-#FFFFFF
+          href: http://readarr.lan
+    - Readarr Audiobooks:
+        - icon: si-readarr-#FFFFFF
+          href: http://readarr-audio.lan
