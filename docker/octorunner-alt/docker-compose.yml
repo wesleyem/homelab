@@ -1,0 +1,9 @@
+---
+services:
+  github-runner:
+    container_name: github-runner-alt
+    image: ghcr.io/wesleyem/octorunner:latest
+    environment:
+      REPO: ${RUNNER_REPO}
+      TOKEN: ${RUNNER_TOKEN}
+    restart: unless-stopped

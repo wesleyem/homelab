@@ -1,0 +1,12 @@
+udp:
+  routers:
+    adguard-sith:
+      entryPoints:
+        - dns
+      service: sith
+
+  services:
+    sith:
+      loadBalancer:
+        servers:
+          - address: "10.100.0.79"

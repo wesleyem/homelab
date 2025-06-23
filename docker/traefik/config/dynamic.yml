@@ -1,0 +1,14 @@
+http:
+  routers:
+    syno:
+      entryPoints:
+        - web
+        - websecure
+      service: syno
+      rule: Host(`syno.home.wesleyem.com`)
+  services:
+    syno:
+      loadBalancer:
+        servers:
+          - url: http://syno/
+        passHostHeader: true
