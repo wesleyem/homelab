@@ -13,8 +13,6 @@ services:
       PGID: 950
       UMASK: 002
       TZ: America/Los_Angeles
-    ports:
-      - 8181:8181
     volumes:
       - /mnt/store/containers/tautulli:/config
     restart: unless-stopped

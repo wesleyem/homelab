@@ -11,8 +11,6 @@ services:
     restart: unless-stopped
     logging:
       driver: json-file
-    ports:
-      - 7878:7878
     environment:
       PUID: 950
       PGID: 950

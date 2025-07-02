@@ -12,7 +12,5 @@ services:
     environment:
       LOG_LEVEL: info
       TZ: America/Los_Angeles
-    ports:
-      - 5055:5055
     volumes:
       - /mnt/store/containers/overseerr:/app/config
