@@ -14,3 +14,4 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     privileged: true
+    hostname: homeassistant
