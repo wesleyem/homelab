@@ -1,9 +1,12 @@
 ---
+networks:
+  default:
+    external: true
+    name: custom_macvlan
 services:
   adguard:
     image: adguard/adguardhome
     container_name: adguard
-    network_mode: macvlan
     restart: unless-stopped
     volumes:
       - /mnt/store/containers/adguard/work:/opt/adguardhome/work
