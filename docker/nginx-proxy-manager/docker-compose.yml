@@ -11,7 +11,7 @@ services:
     ports:
       - "80:80" # Public HTTP Port
       - "443:443" # Public HTTPS Port
-      - "81:81" # Admin Web Port
+      - "18181:81" # Admin Web Port
     volumes:
       - /mnt/store/containers/npm/data:/data
       - /mnt/store/containers/npm/letsencrypt:/etc/letsencrypt
