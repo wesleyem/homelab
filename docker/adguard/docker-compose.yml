@@ -1,8 +1,11 @@
 ---
+networks:
+  default:
+    external: true
+    name: proxynet
 services:
   adguard:
     image: adguard/adguardhome
-    network_mode: host
     container_name: adguard
     restart: unless-stopped
     volumes:
