@@ -20,8 +20,6 @@ services:
   homepage:
     container_name: homepage
     image: ghcr.io/gethomepage/homepage:latest
-    ports:
-      - 3001:3000
     hostname: homepage
     volumes:
       - /mnt/store/containers/homepage:/app/config
