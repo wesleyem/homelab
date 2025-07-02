@@ -2,7 +2,7 @@
 networks:
   default:
     external: true
-    name: my-macvlan-net
+    name: custom-macvlan
 services:
   adguard:
     image: adguard/adguardhome
