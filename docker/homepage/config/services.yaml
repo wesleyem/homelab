@@ -1,13 +1,13 @@
 ---
 - Networking:
     - UniFi UDM Pro:
-        href: http://unifi.lan
+        href: https://unifi.lan
         icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/unifi-controller.png
         description: UDM Pro
-        siteMonitor: http://unifi.lan
+        siteMonitor: https://unifi.lan
         widget:
           type: unifi
-          url: http://unifi.lan
+          url: https://unifi.lan
           key: {{HOMEPAGE_VAR_UNIFI_KEY}}
 
     - Nginx Proxy Manager:
