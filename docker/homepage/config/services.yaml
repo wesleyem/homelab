@@ -1,28 +1,14 @@
 ---
 - Networking:
-    - Netgear Managed Switch:
-        href: http://hawkeye.lan
-        icon: si-netgear
-        description: hawkeye
-        siteMonitor: http://hawkeye.lan
-
-    - Linksys Router:
-        href: http://thor.lan
-        icon: si-linksys
-        description: thor
-        siteMonitor: http://thor.lan
-
-    - Linksys Access Point 1:
-        href: http://ironman.lan
-        icon: si-linksys
-        description: ironman
-        siteMonitor: http://ironman.lan
-
-    - Linksys Access Point 2:
-        href: http://blackwidow.lan
-        icon: si-linksys
-        description: black widow
-        siteMonitor: http://blackwidow.lan
+    - UniFi UDM Pro:
+        href: http://unifi.lan
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/unifi-controller.png
+        description: UDM Pro
+        siteMonitor: http://unifi.lan
+        widget:
+          type: unifi
+          url: http://unifi.lan
+          key: {{HOMEPAGE_VAR_UNIFI_KEY}}
 
     - Nginx Proxy Manager:
         href: http://npm.lan
@@ -48,18 +34,6 @@
           key: {{HOMEPAGE_VAR_TRUENAS_KEY}}
           enablePools: true
           nasType: scale
-
-    - Synology:
-        href: http://syno.lan
-        icon: si-synology
-        description: Synology D218+
-        siteMonitor: http://syno.lan
-        widget:
-          type: diskstation
-          url: http://syno.lan
-          username: {{HOMEPAGE_VAR_SYNO_USERNAME}}
-          password: {{HOMEPAGE_VAR_SYNO_PASSWORD}}
-          volume: volume_1
 
     - GitHub Runner:
         href: http://portainer.lan
@@ -93,17 +67,6 @@
           url: http://adguard.lan
           username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
           password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
-
-    - WireGuard:
-        href: http://wg.lan
-        icon: si-wireguard
-        description: wireguard vpn
-        server: kevins_dockerproxy
-        container: wg-easy
-        widget:
-          type: wgeasy
-          url: http://wg.lan
-          password: {{HOMEPAGE_VAR_WGEASY_PASSWORD}}
 
 - Management:
     - Portainer:
@@ -147,10 +110,3 @@
           type: watchtower
           url: http://watchtower.lan
           key: {{HOMEPAGE_VAR_WATCHTOWER_KEY}}
-    
-    - Coder:
-        href: http://coder.lan
-        icon: si-coder
-        description: Cloud Development Environment
-        server: kevins_dockerproxy
-        container: coder
