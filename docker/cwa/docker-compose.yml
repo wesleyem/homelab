@@ -8,6 +8,7 @@ services:
   calibre-web-automated-book-downloader:
     image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
     container_name: calibre-web-automated-book-downloader
+    hostname: bookdownloader
     environment:
       TZ: America/Los_Angeles
       PUID: 950
