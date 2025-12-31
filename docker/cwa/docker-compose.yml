@@ -6,12 +6,16 @@ networks:
 
 services:
   calibre-web-automated-book-downloader:
-    image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
+    image: ghcr.io/calibrain/calibre-web-automated-book-downloader-tor:latest
     container_name: calibre-web-automated-book-downloader
     environment:
-      TZ: America/Los_Angeles
+      FLASK_PORT: 8084
+      USING_TOR: true
       PUID: 950
       PGID: 950
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
     ports:
       - 8084:8084
     restart: unless-stopped
