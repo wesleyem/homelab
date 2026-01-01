@@ -1,0 +1,20 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    hostname: audiobookshelf
+    ports:
+      - 13378:80
+    volumes:
+      - /mnt/store/media/audiobooks:/audiobooks
+      - /mnt/store/containers/audiobookshelf/podcasts:/podcasts
+      - /mnt/store/containers/audiobookshelf/config:/config
+      - /mnt/store/containers/audiobookshelf/metadata:/metadata
+    environment:
+      - TZ=America/Los_Angeles
