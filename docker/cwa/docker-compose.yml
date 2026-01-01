@@ -8,13 +8,11 @@ services:
   calibre-web-automated-book-downloader:
     image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
     container_name: calibre-web-automated-book-downloader
-    hostname: bookdownloader
     environment:
       TZ: America/Los_Angeles
       PUID: 950
       PGID: 950
-    ports:
-      - 8084:8084
+    network_mode: "service:gluetun"
     restart: unless-stopped
     volumes:
       - /mnt/store/containers/booklore/bookdrop:/cwa-book-ingest # Book ingest directory
