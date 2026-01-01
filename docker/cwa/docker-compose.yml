@@ -12,7 +12,7 @@ services:
       TZ: America/Los_Angeles
       PUID: 950
       PGID: 950
-    network_mode: "service:gluetun"
+    network_mode: "container:gluetun"
     restart: unless-stopped
     volumes:
       - /mnt/store/containers/booklore/bookdrop:/cwa-book-ingest # Book ingest directory
