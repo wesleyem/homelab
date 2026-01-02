@@ -1,0 +1,35 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  qbittorrent:
+    container_name: qbittorrent
+    hostname: qbittorrent
+    restart: unless-stopped
+    image: ghcr.io/hotio/qbittorrent:latest
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: Etc/UTC
+      VPN_ENABLED: true
+      VPN_PROVIDER: proton
+      VPN_LAN_NETWORK: 192.168.1.0/24
+      VPN_CONF: wg0
+      PRIVOXY_ENABLED: false
+    volumes:
+      - /mnt/store/containers/qbittorrent:/config
+      - /mnt/store/media:/data
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+      - 8.8.8.8
+      - 8.8.4.4
+    sysctls:
+      net.ipv4.conf.all.src_valid_mark: 1
+      net.ipv6.conf.all.disable_ipv6: 1

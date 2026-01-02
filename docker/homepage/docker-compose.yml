@@ -1,0 +1,42 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  dockerproxy:
+    image: ghcr.io/tecnativa/docker-socket-proxy:latest
+    container_name: dockerproxy
+    environment:
+      - CONTAINERS=1 # Allow access to viewing containers
+      - POST=0 # Disallow any POST operations (effectively read-only)
+    ports:
+      - 127.0.0.1:2375:2375
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro # Mounted as read-only
+    restart: unless-stopped
+
+  homepage:
+    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:latest
+    hostname: homepage
+    volumes:
+      - /mnt/store/containers/homepage:/app/config
+    restart: unless-stopped
+    environment:
+      HOMEPAGE_VAR_NPM_USERNAME: ${HOMEPAGE_VAR_NPM_USERNAME}
+      HOMEPAGE_VAR_NPM_PASSWORD: ${HOMEPAGE_VAR_NPM_PASSWORD}
+      HOMEPAGE_VAR_TRUENAS_KEY: ${HOMEPAGE_VAR_TRUENAS_KEY}
+      HOMEPAGE_VAR_PORTAINER_KEY: ${HOMEPAGE_VAR_PORTAINER_KEY}
+      HOMEPAGE_VAR_ADGUARD_USERNAME: ${HOMEPAGE_VAR_ADGUARD_USERNAME}
+      HOMEPAGE_VAR_ADGUARD_PASSWORD: ${HOMEPAGE_VAR_ADGUARD_PASSWORD}
+      HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID: ${HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}
+      HOMEPAGE_VAR_CLOUDFLARED_TUNNELID: ${HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}
+      HOMEPAGE_VAR_CLOUDFLARED_KEY: ${HOMEPAGE_VAR_CLOUDFLARED_KEY}
+      HOMEPAGE_VAR_WGEASY_PASSWORD: ${HOMEPAGE_VAR_WGEASY_PASSWORD}
+      HOMEPAGE_VAR_SYNO_USERNAME: ${HOMEPAGE_VAR_SYNO_USERNAME}
+      HOMEPAGE_VAR_SYNO_PASSWORD: ${HOMEPAGE_VAR_SYNO_PASSWORD}
+      HOMEPAGE_VAR_WATCHTOWER_KEY: ${HOMEPAGE_VAR_WATCHTOWER_KEY}
+      HOMEPAGE_VAR_UNIFI_KEY: ${HOMEPAGE_VAR_UNIFI_KEY}
+      HOMEPAGE_ALLOWED_HOSTS: homepage.lan

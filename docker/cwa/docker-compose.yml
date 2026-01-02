@@ -1,0 +1,20 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  calibre-web-automated-book-downloader:
+    image: ghcr.io/calibrain/calibre-web-automated-book-downloader:latest
+    container_name: calibre-web-automated-book-downloader
+    environment:
+      TZ: America/Los_Angeles
+      PUID: 950
+      PGID: 950
+    network_mode: "container:gluetun"
+    restart: unless-stopped
+    volumes:
+      - /mnt/store/containers/booklore/bookdrop:/cwa-book-ingest # Book ingest directory
+      - /mnt/store/containers/cwa/config:/config # App configuration
+      - /mnt/store/media/complete:/downloads

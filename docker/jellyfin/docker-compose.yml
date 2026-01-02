@@ -1,0 +1,24 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  jellyfin:
+    container_name: jellyfin
+    hostname: jellyfin
+    image: ghcr.io/hotio/jellyfin
+    ports:
+      - "8096:8096"
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /mnt/store/containers/jellyfin/config:/config
+      - /mnt/store/media/movies:/data/movies
+      - /mnt/store/media/tv:/data/tv
