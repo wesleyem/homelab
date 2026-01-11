@@ -9,6 +9,7 @@ services:
     image: ghcr.io/advplyr/audiobookshelf:latest
     container_name: audiobookshelf
     hostname: audiobookshelf
+    restart: unless-stopped
     ports:
       - 13378:80
     volumes:
