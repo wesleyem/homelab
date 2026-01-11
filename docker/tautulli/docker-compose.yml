@@ -1,0 +1,18 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  tautulli:
+    container_name: tautulli
+    image: ghcr.io/hotio/tautulli:latest
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+    volumes:
+      - /mnt/store/containers/tautulli:/config
+    restart: unless-stopped

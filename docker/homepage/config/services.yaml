@@ -1,0 +1,112 @@
+---
+- Networking:
+    - UniFi UDM Pro:
+        href: https://unifi.lan
+        icon: https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/unifi-controller.png
+        description: UDM Pro
+        siteMonitor: https://unifi.lan
+        widget:
+          type: unifi
+          url: https://unifi.lan
+          key: {{HOMEPAGE_VAR_UNIFI_KEY}}
+
+    - Nginx Proxy Manager:
+        href: http://npm.lan
+        icon: si-nginxproxymanager
+        description: nginx proxy manager
+        server: kevins_dockerproxy
+        container: nginx-proxy-manager
+        widget:
+          type: npm
+          url: http://npm.lan
+          username: {{HOMEPAGE_VAR_NPM_USERNAME}}
+          password: {{HOMEPAGE_VAR_NPM_PASSWORD}}
+
+- Infrastructure and Data:
+    - TrueNAS Scale:
+        href: http://kevin.lan
+        icon: si-truenas
+        description: kevin
+        siteMonitor: http://kevin.lan
+        widget:
+          type: truenas
+          url: http://kevin.lan
+          key: {{HOMEPAGE_VAR_TRUENAS_KEY}}
+          enablePools: true
+          nasType: scale
+
+    - GitHub Runner:
+        href: http://portainer.lan
+        icon: si-github
+        description: GH runner
+        server: kevins_dockerproxy
+        container: github-runner
+
+    - GitHub Runner Alt:
+        href: http://portainer.lan
+        icon: si-github
+        description: alternate GH runner
+        server: kevins_dockerproxy
+        container: github-runner-alt
+
+    - Docker Proxy:
+        href: http://portainer.lan
+        icon: si-docker
+        description: docker proxy
+        server: kevins_dockerproxy
+        container: dockerproxy
+
+    - AdGuard Home:
+        href: http://adguard.lan
+        icon: si-adguard
+        description: DNS Server
+        server: kevins_dockerproxy
+        container: adguard
+        widget:
+          type: adguard
+          url: http://adguard.lan
+          username: {{HOMEPAGE_VAR_ADGUARD_USERNAME}}
+          password: {{HOMEPAGE_VAR_ADGUARD_PASSWORD}}
+
+- Management:
+    - Portainer:
+        href: http://portainer.lan
+        icon: si-portainer
+        description: portainer
+        server: kevins_dockerproxy
+        container: portainer
+        widget:
+          type: portainer
+          url: http://portainer.lan
+          env: 2
+          key: {{HOMEPAGE_VAR_PORTAINER_KEY}}
+
+    - Homepage:
+        href: http://homepage.lan
+        icon: si-homepage
+        description: My Awesome Homepage
+        server: kevins_dockerproxy
+        container: homepage
+
+    - Cloudflare Tunnel:
+        href: https://dash.cloudflare.com
+        icon: si-cloudflare
+        description: Cloudflare Tunnels
+        server: kevins_dockerproxy
+        container: cloudflared
+        widget:
+          type: cloudflared
+          accountid: {{HOMEPAGE_VAR_CLOUDFLARED_ACCOUNTID}}
+          tunnelid: {{HOMEPAGE_VAR_CLOUDFLARED_TUNNELID}}
+          key: {{HOMEPAGE_VAR_CLOUDFLARED_KEY}}
+
+    - Watchtower:
+        href: http://portainer.lan
+        icon: si-watchtower
+        description: Container version management
+        server: kevins_dockerproxy
+        container: watchtower
+        widget:
+          type: watchtower
+          url: http://watchtower.lan
+          key: {{HOMEPAGE_VAR_WATCHTOWER_KEY}}

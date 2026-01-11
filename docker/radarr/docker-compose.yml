@@ -1,0 +1,21 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+    volumes:
+      - /mnt/store/containers/radarr:/config
+      - /mnt/store/media:/data

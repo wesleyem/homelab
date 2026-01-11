@@ -1,0 +1,13 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+name: Cloudflared
+services:
+  cloudflared:
+    container_name: cloudflared
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${CF_TOKEN}
+    restart: unless-stopped

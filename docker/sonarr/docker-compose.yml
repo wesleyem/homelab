@@ -1,0 +1,21 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:latest
+    restart: unless-stopped
+    logging:
+      driver: json-file
+    environment:
+      PUID: 950
+      PGID: 950
+      UMASK: 002
+      TZ: America/Los_Angeles
+    volumes:
+      - /mnt/store/containers/sonarr:/config
+      - /mnt/store/media:/data

@@ -1,0 +1,16 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  overseerr:
+    container_name: overseerr
+    image: sctx/overseerr:latest
+    restart: unless-stopped
+    environment:
+      LOG_LEVEL: info
+      TZ: America/Los_Angeles
+    volumes:
+      - /mnt/store/containers/overseerr:/app/config

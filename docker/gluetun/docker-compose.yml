@@ -1,0 +1,21 @@
+---
+networks:
+  default:
+    external: true
+    name: proxynet
+
+services:
+  gluetun:
+    image: ghcr.io/qdm12/gluetun
+    container_name: gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8084:8084 #calibre-web-automated-book-downloader
+    environment:
+      VPN_SERVICE_PROVIDER: protonvpn
+      VPN_TYPE: wireguard
+      WIREGUARD_PRIVATE_KEY: ${WIREGUARD_PRIVATE_KEY}
